@@ -1,0 +1,5 @@
+{{> listeRepPiloPartial }}
+{{#each data}}
+  <img src="/image/pilote/{{this.phoadresse}}">
+  <p> <a href="/detailPilote/{{this.pilnum}}"> {{this.pilnom}}</a> </p>
+{{/each}}

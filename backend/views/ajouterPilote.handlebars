@@ -1,0 +1,55 @@
+<h1> Ajouter un pilote </h1>
+
+{{#if fail}}
+  <p>
+    <strong>{{this.fail}}</strong>
+  </p>
+{{/if}}
+
+<form action="" method="post" class="form-example">
+  <div>
+    <label for="pilprenom">Prénom : </label>
+    <input type="text" name="pilprenom" required>
+  </div>
+  <div>
+    <label for="pilnom">Nom : </label>
+    <input type="text" name="pilnom" required>
+  </div>
+  <div>
+    <label for="pildatenais">Date de naissance : </label>
+    <input type="date" name="pildatenais" required>
+  </div>
+  <div>
+    <label for="paynum">Nationnnalité : </label>
+    <select name="paynum">
+      {{#each nationalites}}
+        <option value="{{this.paynum}}">{{this.paynat}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <label for="ecunum">Ecurie : </label>
+    <select name="ecunum">
+      {{#each ecuries}}
+        <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <label for="pilpoints">Points : </label>
+    <input type="text" name="pilpoints" required> pts
+  </div>
+  <div>
+    <label for="pilpoids">Poids : </label>
+    <input type="text" name="pilpoids" required> kg
+  </div>
+  <div>
+    <label for="piltaille">Taille : </label>
+    <input type="text" name="piltaille" required> cm
+  </div>
+  <div>
+    <label for="piltexte">Description : </label>
+    <textarea name="piltexte" rows="5" required></textarea>
+  </div>
+  <input type="submit" value="Ajouter">
+</form>

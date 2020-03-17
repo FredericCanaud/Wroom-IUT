@@ -1,0 +1,27 @@
+<div class="monCode">
+    <h1> Gestion des Pilotes </h1>
+    <img src="/image/cat_pilote.png">
+    <div>
+        <img src="/image/act_add.png">
+        <a href="/ajouterPilote">Ajouter un pilote</a>
+    </div>
+</div>
+    <table border="1">
+		    <tr>
+			       <th> Nom </th>
+			       <th> Prénom </th>
+			       <th> Date de naissance </th>
+			       <th> Actions </th>
+		    </tr>
+	 {{#each pilotes}}
+	      <tr>
+			       <td> {{this.pilnom}} </td>
+             <td> {{this.pilprenom}} </td>
+			       <td> {{formatDate this.pildatenais 'DD/MM/YYYY'}} </td>
+			       <td>
+                 <img src="/image/act_edit.png"> <a href="modifierPilote\:num">Modifier</a>
+                 <img src="/image/act_delete.png"> <a href="supprimerPilote\:num">Supprimer</a>
+            </td>
+        </tr>
+   {{/each}}
+  </table>

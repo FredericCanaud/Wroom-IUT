@@ -1,0 +1,21 @@
+<h1> Détail sur le pilote {{pilote.pilnom}} </h1>
+<img src="/image/pilote/{{pilote.phoadresse}}">
+<p><strong>Nom : </strong>{{pilote.pilnom}} {{pilote.pilprenom}}</p>
+<p><strong>Date de Naissance : </strong>{{formatDate pilote.pildatenais 'dddd D MMMM YYYY'}}</p>
+<p><strong>Poids : </strong>{{pilote.pilpoids}} Kg</p>
+<p><strong>Taille : </strong>{{pilote.piltaille}} Cm</p>
+<p><strong>Nationalité : </strong>{{pilote.paynat}}</p>
+{{#if pilote.ecunom}}
+  <p><strong>Écurie : </strong>{{pilote.ecunom}}</p>
+{{else}}
+  <p><strong>Écurie : </strong>Pas d'écurie cette année</p>
+{{/if}}
+<p><strong>Principaux sponsors : </strong></p>
+{{#each sponsors}}
+    <p><strong>{{this.sponom}} </strong>({{this.sposectactivite}})</p>
+{{/each}}
+<p><strong>Qui suis-je ? :</strong> {{pilote.piltexte}}</p>
+{{#each photos}}
+  <img src="/image/pilote/{{this.phoadresse}}" alt="{{this.phosujet}}">
+  <p> {{this.phocommentaire}} </p>
+{{/each}}

@@ -1,0 +1,39 @@
+<div class="monCode">
+<h1> Ajouter un circuit </h1>
+
+{{#if fail}}
+  <p>
+    <strong>{{this.fail}}</strong>
+  </p>
+{{/if}}
+
+<form action="" method="post" class="form-example">
+  <div class="formulaire">
+  <div class="question">
+    <label for="cirnom">Nom : </label>
+    <label for="cirlongueur">Longueur : </label>
+    <label for="paynum">Pays : </label>
+    <label for="ciradresseimage">Image : </label>
+    <label for="cirnbspectateurs">Nombre de spectateurs : </label>
+    <label for="cirtext">Description : </label>
+  </div>
+  <div class="reponse">
+    <input type="text" name="cirnom" required>
+    <div>
+      <input type="text" name="cirlongueur" required> m
+    </div>
+    <select name="paynum">
+      {{#each nomsPays}}
+        <option value="{{this.paynum}}">{{this.paynom}}</option>
+      {{/each}}
+    </select>
+    <input type="file" name="ciradresseimage" accept="image/png, image/jpeg, image/gif, image/jpg" required>
+    <div>
+      <input type="number" name="cirnbspectateurs" required> personnes
+    </div>
+    <textarea name="cirtext" rows="2" cols="40" required></textarea>
+  </div>
+</div>
+  <input type="submit" value="Ajouter">
+</form>
+</div>

@@ -1,0 +1,19 @@
+
+  <h1>Administration</h1> <br>
+
+  <h2> Veuillez vous connecter pour accéder aux paramètres d'administration</h2>
+
+  {{#if fail}}
+    <p>
+      <strong>{{this.fail}}</strong>
+    </p>
+  {{/if}}
+  <form action="/login"  method="post">
+      <label>Nom d'utilisateur : </label>
+      <input type="text" name="login" <br>
+      <label>Mot de passe : </label>
+      <input type="password" name="motDePasse"<br>
+
+      <button type="submit">Valider</button>
+      <button type="reset">Annuler</button>
+  </form>
