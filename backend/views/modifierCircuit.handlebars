@@ -1,0 +1,43 @@
+
+<h1> Modifier un circuit </h1>
+
+{{#if fail}}
+  <p>
+    <strong>{{this.fail}}</strong>
+  </p>
+{{/if}}
+
+<form action="" method="post" class="form-example">
+  <div>
+      <input type="hidden" name="cirnum" value="{{circuit.cirnum}}">
+  </div>
+  <div>
+    <label for="cirnom">Nom : </label>
+    <input type="text" name="cirnom" value="{{circuit.cirnom}}" required>
+  </div>
+  <div>
+    <label for="cirlongueur">Longueur : </label>
+    <input type="text" name="cirlongueur" value="{{circuit.cirlongueur}}" required> m
+  </div>
+  <div>
+    <label for="paynum">Pays : </label>
+    <select name="paynum">
+      {{#each nomsPays}}
+        <option value="{{this.paynum}}">{{this.paynom}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <label for="ciradresseimage">Image : </label>
+    <input type="file" name="ciradresseimage" accept="image/png, image/jpeg, image/gif, image/jpg" value="{{circuit.ciradresseimage}}" required>
+  </div>
+  <div>
+    <label for="cirnbspectateurs">Nombre de spectateurs : </label>
+    <input type="number" name="cirnbspectateurs" value="{{circuit.cirnbspectateurs}}" required> personnes
+  </div>
+  <div>
+    <label for="cirtext">Description : </label>
+    <textarea name="cirtext" rows="8" cols="40" required>{{circuit.cirtext}}</textarea>
+  </div>
+  <input type="submit" value="Ajouter">
+</form>

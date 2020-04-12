@@ -1,4 +1,4 @@
-<div class="monCode">
+<div class="titre">
     <h1> Gestion des Pilotes </h1>
     <img src="/image/cat_pilote.png">
     <div>
@@ -19,9 +19,11 @@
              <td> {{this.pilprenom}} </td>
 			       <td> {{formatDate this.pildatenais 'DD/MM/YYYY'}} </td>
 			       <td>
-                 <img src="/image/act_edit.png"> <a href="modifierPilote\:num">Modifier</a>
-                 <img src="/image/act_delete.png"> <a href="supprimerPilote\:num">Supprimer</a>
+                 <img src="/image/act_edit.png"> <a href="modifierPilote/{{this.pilnum}}">Modifier</a>
+                 <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerPilote('{{this.pilnom}}','{{this.pilnum}}')" href="#">Supprimer</a>
             </td>
         </tr>
    {{/each}}
   </table>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="/js/fonctions.js"></script>

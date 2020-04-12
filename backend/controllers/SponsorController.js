@@ -1,11 +1,15 @@
-let model = require('../models/sponsor.js');
+let modeleSponsor = require('../models/sponsor.js');
+let modeleEcurie = require('../models/ecurie.js');
+let modeleFinance = require('../models/finance.js');
+let modeleSposorise = require('../models/sponsorise.js');
+
 let async = require('async');
 
    // //////////////////////// L I S T E R  E C U R I E S
 
 module.exports.ListerSponsors = function(request, response){
    response.title = 'Gestion des sponsors';
-    model.getSponsors( function (err, result) {
+    modeleSponsor.getSponsors( function (err, result) {
         if (err) {
             // gestion de l'erreur
             console.log(err);
@@ -13,37 +17,161 @@ module.exports.ListerSponsors = function(request, response){
         }
         response.sponsors = result;
         //console.log(result);
-response.render('sponsors', response);
-});
+        response.render('sponsors', response);
+    });
 }
+module.exports.AjouterSponsor = function(request, response){
+   response.title = 'Ajouter un Sponsor';
+    modeleEcurie.getNomEcuries( function (err, result) {
+       if (err) {
+           console.log(err);
+           return;
+       }
+       response.ecuries = result;
+       console.log(result);
+      response.render('ajouterSponsor', response);
+   });
+}
+module.exports.AjoutSponsor = function(request, response) {
+    response.title = 'Ajout du sponsor en cours...';
 
-module.exports.InfoEcurie = function(request, response){
-   let data = request.params.num;
+    var data = {
+        sponom: request.body.sponom,
+        sposectactivite: request.body.sposectactivite
+    }
+    modeleSponsor.ajouterSponsor(data, function(err, result) {
+        if (err) {
+            response.fail = "Échec de l'ajout !";
+            response.render('/ajouterSponsor', response);
+            console.log(err);
+            return;
+        }
+        var data2 = {
+            ecunum: request.body.ecunum,
+            sponum: result.insertId
+        }
+        modeleFinance.ajouterFinancement(data2, function(err, result) {
+            if (err) {
+                response.fail = "Échec de l'ajout !";
+                response.render('/ajouterSponsor', response);
+                console.log(err);
+                return;
+            }
+            else {
+                response.redirect("/sponsors");
+                console.log("C'est bon !");
+                return;
+            }
+        });
+    });
+}
+module.exports.ModifierSponsor = function(request, response){
+   response.title = 'Modifier un Sponsor';
+   let sponum = request.params.num;
    async.parallel([
-     function(callback){
-         model.getDetailEcurie(data, (function (err, result) {callback(null, result)}));
-     },
       function(callback){
-         model.getListeEcurie(function (err, result) {callback(null,result)});
+          modeleSponsor.getDetailSponsor(sponum, function (err, result) {callback(null,result)});
       },
       function(callback){
-         model.getVoituresFromEcurie(data, function (err, result) {callback(null,result)});
+          modeleEcurie.getEcuriesFromSponsor(sponum, function (err, result) {callback(null, result)});
       },
       function(callback){
-         model.getPilotesFromEcurie(data, function (err, result) {callback(null,result)});
-      },
+          modeleEcurie.getEcuriesNotSponsored(sponum, function (err, result) {callback(null, result)});
+      }
    ],
    function(err, result){
       if (err) {
           console.log(err);
           return;
       }
-      response.ecurie = result[0][0];
-      response.listeEcurie = result[1];
-      response.voitures = result[2];
-      response.pilotes = result[3];
-      console.log(result[0][0]);
-      response.title = "Détail sur l'écurie " + result[0][0].ecunom;
-      response.render('detailEcurie', response);
+      response.sponsor = result[0][0];
+      response.ecuriesSponsorisees = result[1];
+      response.ecuriesNonSponsorisees = result[2];
+      console.log(response.ecuriesNonSponsorisees);
+      response.render('modifierSponsor', response);
    });
  }
+
+ module.exports.ModifSponsor= function(request, response) {
+   response.title = "Modification de l'écurie en cours...";
+
+   var data = {
+     sponum: request.body.sponum,
+     sponom: request.body.sponom,
+     sposectactivite: request.body.sposectactivite
+   }
+   var ecunumDejaSponso = request.body.ecunumDejaSponso;
+   var ecunums = request.body.ecunum;
+
+   for (x in ecunums){
+     if(ecunumDejaSponso.includes(ecunums[x])){
+       var index = ecunumDejaSponso.indexOf(ecunums[x]);
+       if (index !== -1) ecunumDejaSponso.splice(index, 1);
+     }
+   }
+   console.log(ecunums);
+   if(ecunumDejaSponso){
+     for (x in ecunumDejaSponso){
+       var sponsorASupprimer = {
+         sponum: request.body.sponum,
+         ecunum: ecunumDejaSponso[x]
+       }
+       modeleFinance.supprimerFinancement(sponsorASupprimer, function(err, res) {
+       if (err) {
+           response.fail = "Échec de la modification !";
+           response.render('modifierSponsor', response);
+           console.log(err);
+           return;
+       }});
+     }
+   }
+   for (x in ecunums){
+     var data2 = {
+       sponum: request.body.sponum,
+       ecunum: ecunums[x]
+     }
+     modeleFinance.modifierFinancement(data2, function(err, res) {
+     if (err) {
+         response.fail = "Échec de la modification !";
+         response.render('modifierSponsor', response);
+         console.log(err);
+         return;
+     }});
+   }
+   modeleSponsor.modifierSponsor(data, function(err, res) {
+       if (err) {
+         response.fail = "Échec de la modification !";
+         response.render('modifierSponsor', response);
+         console.log(err);
+         return;
+       }
+       else {
+           response.redirect("/sponsors");
+           console.log("C'est bon !");
+           return;
+       }
+     });
+ }
+
+ module.exports.SupprimerSponsor = function(request, response){
+    response.title = 'Supprimer un Sponsor';
+    let sponum = request.params.num;
+    async.series([
+       function(callback){
+           modeleFinance.supprimerFinancementBySponum(sponum, function (err, result) {callback(null, result)});
+       },
+       function(callback){
+           modeleSposorise.supprimerSponsoringBySponum(sponum, function (err, result) {callback(null, result)});
+       },
+       function(callback){
+           modeleSponsor.supprimerSponsor(sponum, function (err, result) {callback(null,result)});
+       },
+    ],
+    function(err, result){
+       if (err) {
+           console.log(err);
+           return;
+       }
+       response.redirect('/sponsors');
+    });
+  }

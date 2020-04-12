@@ -9,29 +9,10 @@
 
     	color: #000000;
     }
-    .monCode{
-      text-align: center;
-    }
-    .question{
-      margin-top: 1.5%;
-      margin-right: 1%;
+    .titre{
       display: flex;
       flex-direction: column;
-      text-align: left;
-    }
-    .question label{
-      height: 15%;
-    }
-    .reponse{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    input[type="text"], input[type="number"], textarea{
-      border-radius: 15px;
-    }
-    input{
-      margin-bottom: 1%;
+      align-items: center;
     }
     .formulaire{
       display: flex;

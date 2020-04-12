@@ -49,7 +49,7 @@ module.exports.getDetailEcurie = function (ecunum, callback) {
 				 if(!err){
 							 // s'il n'y a pas d'erreur de connexion
 							 // execution de la requête SQL
-								let sql ="SELECT ecu.ecunum, ecunom, ecunomdir, ecuadrsiege, ecuadresseimage, fpnom, paynom FROM ecurie ecu JOIN fourn_pneu fp ON ecu.fpnum = fp.fpnum JOIN pays p ON ecu.paynum = p.paynum WHERE ecu.ecunum = " + ecunum;
+								let sql ="SELECT ecu.ecunum, ecunom, ecunomdir, ecupoints, ecuadrsiege, ecuadresseimage, fpnom, paynom FROM ecurie ecu JOIN fourn_pneu fp ON ecu.fpnum = fp.fpnum JOIN pays p ON ecu.paynum = p.paynum WHERE ecu.ecunum = " + ecunum;
 												 console.log (sql);
 						 connexion.query(sql, callback);
 
@@ -102,6 +102,51 @@ module.exports.getVoituresFromEcurie = function (ecunum, callback) {
 
 								// la connexion retourne dans le pool
 								connexion.release();
+						 }
+					});
+	};
+	module.exports.modifierEcurie = function (data, callback) {
+			 // connection à la base
+			 db.getConnection(function(err, connexion){
+						if(!err){
+									// s'il n'y a pas d'erreur de connexion
+									// execution de la requête SQL
+									 let sql ="UPDATE ecurie SET ? WHERE ecunum=" + data.ecunum;
+														console.log (sql);
+								connexion.query(sql, data, callback);
+
+								// la connexion retourne dans le pool
+								connexion.release();
+						 }
+					});
+	};
+	module.exports.getEcuriesFromSponsor = function (sponum, callback) {
+			 // connection à la base
+			 db.getConnection(function(err, connexion){
+						if(!err){
+									// s'il n'y a pas d'erreur de connexion
+									// execution de la requête SQL
+									 let sql ="SELECT f.ecunum, ecunom FROM finance f JOIN ecurie e ON e.ecunum = f.ecunum WHERE sponum=" + sponum;
+								connexion.query(sql, sponum, callback);
+
+								// la connexion retourne dans le pool
+								connexion.release();
+
+						 }
+					});
+	};
+	module.exports.getEcuriesNotSponsored = function (sponum, callback) {
+			 // connection à la base
+			 db.getConnection(function(err, connexion){
+						if(!err){
+									// s'il n'y a pas d'erreur de connexion
+									// execution de la requête SQL
+									 let sql ="SELECT DISTINCT f.ecunum, ecunom FROM finance f JOIN ecurie e ON e.ecunum = f.ecunum WHERE f.ecunum NOT IN(SELECT f.ecunum FROM finance f JOIN ecurie e ON e.ecunum = f.ecunum WHERE sponum=" + sponum +")";
+								connexion.query(sql, sponum, callback);
+
+								// la connexion retourne dans le pool
+								connexion.release();
+
 						 }
 					});
 	};

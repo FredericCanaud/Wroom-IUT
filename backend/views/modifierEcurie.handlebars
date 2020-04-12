@@ -1,0 +1,58 @@
+<h1> Modifier une écurie </h1>
+
+{{#if fail}}
+  <p>
+    <strong>{{this.fail}}</strong>
+  </p>
+{{/if}}
+
+<form action="" method="post" class="form-example">
+  <div>
+      <input type="hidden" name="ecunum" value="{{ecurie.ecunum}}">
+  </div>
+  <div>
+    <label for="ecunom">Nom : </label>
+    <input type="text" name="ecunom" value="{{ecurie.ecunom}}" required>
+  </div>
+  <div>
+    <label for="ecunomdir">Directeur : </label>
+    <input type="text" name="ecunomdir" value="{{ecurie.ecunomdir}}" required>
+  </div>
+  <div>
+    <label for="ecuadrsiege">Adresse du siege : </label>
+    <textarea name="ecuadrsiege" rows="2" cols="40" required>{{ecurie.ecuadrsiege}}</textarea>
+  </div>
+  <div>
+    <label for="ecupoints">Points : </label>
+    <input type="number" name="ecupoints" value="{{ecurie.ecupoints}}" required> pts
+  </div>
+  <div>
+    <label for="paynum">Pays : </label>
+    <select name="paynum">
+      {{#each nationalites}}
+          {{#ifEquals this.paynom ../ecurie.paynom}}
+              <option value="{{this.paynum}}" selected>{{this.paynom}}</option>
+          {{else}}
+              <option value="{{this.paynum}}">{{this.paynom}}</option>
+          {{/ifEquals}}
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <label for="fpnum">Fournisseur de penu : </label>
+    <select name="fpnum">
+      {{#each fournisseurs}}
+          {{#ifEquals this.fpnom ../ecurie.fpnom}}
+              <option value="{{this.fpnum}}" selected>{{this.fpnom}}</option>
+          {{else}}
+              <option value="{{this.fpnum}}">{{this.fpnom}}</option>
+          {{/ifEquals}}
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <label for="ecuadresseimage">Image : </label>
+    <input type="file" name="ecuadresseimage" value="{{this.ecuadresseimage}}" accept="image/png, image/jpeg, image/gif, image/jpg">
+  </div>
+  <input type="submit" value="Ajouter">
+</form>

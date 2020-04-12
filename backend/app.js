@@ -48,5 +48,4 @@ require('./router/router')(app);
 
 http.createServer(app).listen(app.get('port'), function(req, res){
     console.log('Serveur Node.js en attente sur le port ' + app.get('port'));
-    
 });

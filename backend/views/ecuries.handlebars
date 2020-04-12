@@ -1,9 +1,10 @@
-<div class="monCode">
-<h1> Gestion des Ecuries </h1>
-<img src="/image/cat_ecurie.png">
-<div>
-  <img src="/image/act_add.png">
-  <a href="/ajouterEcurie">Ajouter une écurie</a>
+<div class="titre">
+  <h1> Gestion des Ecuries </h1>
+  <img src="/image/cat_ecurie.png">
+  <div>
+    <img src="/image/act_add.png">
+    <a href="/ajouterEcurie">Ajouter une écurie</a>
+  </div>
 </div>
 <table border="1">
 		<tr>
@@ -18,10 +19,9 @@
       <td> {{this.ecunomdir}} </td>
 			<td> {{this.ecupoints}} </td>
 			<td>
-          <img src="/image/act_edit.png"> <a href="modifierEcurie\:num">Modifier</a>
-          <img src="/image/act_delete.png"> <a href="supprimerEcurie\:num">Supprimer</a>
+          <img src="/image/act_edit.png"> <a href="modifierEcurie/{{this.ecunum}}">Modifier</a>
+          <img src="/image/act_delete.png"> <a href="supprimerEcurie/{{this.ecunum}}">Supprimer</a>
       </td>
     </tr>
    {{/each}}
 </table>
-</div>

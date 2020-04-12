@@ -142,3 +142,59 @@ module.exports.InfoEcurie = function(request, response){
      }
    });
  }
+ module.exports.ModifierEcurie = function(request, response){
+    response.title = 'Modifier une Ecurie';
+    async.parallel([
+       function(callback){
+           modeleFournisseurPneu.getNomFournisseurs(function (err, result) {callback(null,result)});
+       },
+       function(callback){
+           modelePays.getNomPays(function (err, result) {callback(null, result)});
+       },
+       function(callback){
+           let ecunum = request.params.num;
+           modeleEcurie.getDetailEcurie(ecunum,function(err, result) {callback(null, result)});
+       }
+    ],
+    function(err, result){
+       if (err) {
+           console.log(err);
+           return;
+       }
+       response.fournisseurs = result[0];
+       response.nationalites = result[1];
+       response.ecurie = result[2][0];
+       console.log(result[2][0]);
+       response.render('modifierEcurie', response);
+    });
+  }
+
+  module.exports.ModifEcurie = function(request, response) {
+    response.title = "Modification de l'écurie en cours...";
+
+    var data = {
+      ecunum: request.body.ecunum,
+      ecunom: request.body.ecunom,
+      ecunomdir: request.body.ecunomdir,
+      ecuadrsiege: request.body.ecuadrsiege,
+      ecupoints: request.body.ecupoints,
+      ecuadresseimage: request.body.ecuadresseimage,
+      paynum: request.body.paynum,
+      fpnum: request.body.fpnum
+    }
+
+    console.log(data);
+    modeleEcurie.modifierEcurie(data, function(err, res) {
+      if (err) {
+        response.fail = "Échec de l'ajout !";
+        response.render('modifierEcurie', response);
+        console.log(err);
+        return;
+      }
+      else {
+          response.redirect("/ecuries");
+          console.log("C'est bon !");
+          return;
+      }
+    });
+  }
