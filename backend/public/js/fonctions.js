@@ -43,3 +43,18 @@ function supprimerCircuit(cirnom, cirnum){
   }
 });
 }
+
+function supprimerEcurie(ecunom, ecunum){
+  Swal.fire({
+    title: "Supprimer l'écurie " + ecunom + "?",
+    text: "Êtes-vous sûr de vouloir supprimer l'écurie' " + ecunom + "?",
+    icon: "error",
+    confirmButtonText: "Supprimer",
+    cancelButtonText: "Annuler",
+    showCancelButton: true,
+  }).then(function (result) {
+  if (result.value) {
+    window.location = "/supprimerEcurie/" + ecunum;
+  }
+});
+}

@@ -36,6 +36,7 @@ module.exports = function(app){
    app.post('/ajouterEcurie', EcurieController.AjoutEcurie);
    app.get('/modifierEcurie/:num', EcurieController.ModifierEcurie);
    app.post('/modifierEcurie/:num', EcurieController.ModifEcurie);
+   app.get('/supprimerEcurie/:num', EcurieController.SupprimerEcurie);
 
  // Résultats
    app.get('/resultats', ResultatController.ListerResultat);

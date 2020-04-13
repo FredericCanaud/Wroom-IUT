@@ -2,6 +2,10 @@ let async = require('async');
 let modelePays = require('../models/pays.js');
 let modeleEcurie = require('../models/ecurie.js');
 let modeleFournisseurPneu = require('../models/fournisseurPneu.js');
+let modeleVoiture = require('../models/voiture.js');
+let modeleFinance = require('../models/finance.js');
+let modelePilote = require('../models/pilote.js');
+
    // //////////////////////// L I S T E R  E C U R I E S
 
 module.exports.ListerEcurie = function(request, response){
@@ -198,3 +202,28 @@ module.exports.InfoEcurie = function(request, response){
       }
     });
   }
+  module.exports.SupprimerEcurie = function(request, response){
+     response.title = "Suppression d'une écurie en cours...";
+     let ecunum = request.params.num;
+     async.series([
+        function(callback){
+            modeleFinance.supprimerFinancementByEcunum(ecunum, function (err, result) {callback(null, result)});
+        },
+        function(callback){
+            modeleVoiture.updateVoitureSansEcurie(ecunum, function (err, result) {callback(null, result)});
+        },
+        function(callback){
+            modelePilote.updatePiloteSansEcurie(ecunum, function (err, result) {callback(null,result)});
+        },
+        function(callback){
+            modeleEcurie.supprimerEcurie(ecunum, function (err, result) {callback(null,result)});
+        },
+     ],
+     function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+        response.redirect('/ecuries');
+     });
+   }

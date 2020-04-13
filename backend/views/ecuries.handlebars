@@ -20,8 +20,10 @@
 			<td> {{this.ecupoints}} </td>
 			<td>
           <img src="/image/act_edit.png"> <a href="modifierEcurie/{{this.ecunum}}">Modifier</a>
-          <img src="/image/act_delete.png"> <a href="supprimerEcurie/{{this.ecunum}}">Supprimer</a>
+          <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerEcurie('{{this.ecunom}}','{{this.ecunum}}')" href="#">Supprimer</a>
       </td>
     </tr>
    {{/each}}
 </table>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="/js/fonctions.js"></script>
