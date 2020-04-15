@@ -1,11 +1,12 @@
-let model = require('../models/pilote.js');
+let modelePilote = require('../models/pilote.js');
+let modeleEcurie = require('../models/ecurie.js')
 let async = require('async');
 
 // ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
 
 module.exports.Repertoire = 	function(request, response){
    response.title = 'Répertoire des pilotes';
-    model.getPiloteNameFirstLetter( function (err, result) {
+    modelePilote.getPiloteNameFirstLetter( function (err, result) {
        if (err) {
            console.log(err);
            return;
@@ -21,10 +22,10 @@ module.exports.RepertoireLettre = function(request, response){
    let data = request.params.num;
    async.parallel([
       function(callback){
-           model.getPiloteNameFirstLetter( function (err, result) {callback(null,result)});
+           modelePilote.getPiloteNameFirstLetter( function (err, result) {callback(null,result)});
       },
       function(callback){
-          model.getNomPilote(data, (function (err, result) {callback(null, result)}));
+          modelePilote.getNomPilote(data, (function (err, result) {callback(null, result)}));
       }
    ],
    function(err, result){
@@ -40,15 +41,29 @@ module.exports.RepertoireLettre = function(request, response){
  }
  module.exports.InfoPilote = function(request, response){
     let data = request.params.num;
+    modelePilote.getDetailPilote(data, function (err, result) {
+       if (err) {
+           console.log(err);
+           return;
+       }
+       response.pilote = result[0];
+       console.log(result[0]);
+       if(result[0].ecunum){
+          modeleEcurie.getNomEcurie(result[0].ecunum, function (err, result) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+          response.ecurie = result[0];
+        });
+      }
+    });
     async.parallel([
        function(callback){
-            model.getDetailPilote(data,function (err, result) {callback(null,result)});
+           modelePilote.getSponsorsFromPilote(data, (function (err, result) {callback(null, result)}));
        },
        function(callback){
-           model.getSponsorsFromPilote(data, (function (err, result) {callback(null, result)}));
-       },
-       function(callback){
-           model.getPhotosFromPilote(data, (function (err, result) {callback(null, result)}));
+           modelePilote.getPhotosFromPilote(data, (function (err, result) {callback(null, result)}));
        }
     ],
     function(err, result){
@@ -56,11 +71,10 @@ module.exports.RepertoireLettre = function(request, response){
            console.log(err);
            return;
        }
-       response.pilote = result[0][0];
-       response.sponsors = result[1];
-       response.photos = result[2];
-       console.log(result[0][0]);
-       response.title = 'Détail sur le pilote ' + result[0][0].pilnom;
+
+       response.sponsors = result[0];
+       response.photos = result[1];
+
        response.render('detailPilote', response);
     });
   }

@@ -5,8 +5,8 @@
 <p><strong>Poids : </strong>{{pilote.pilpoids}} Kg</p>
 <p><strong>Taille : </strong>{{pilote.piltaille}} Cm</p>
 <p><strong>Nationalité : </strong>{{pilote.paynat}}</p>
-{{#if pilote.ecunom}}
-  <p><strong>Écurie : </strong>{{pilote.ecunom}}</p>
+{{#if ecurie.ecunom}}
+  <p><strong>Écurie : </strong>{{ecurie.ecunom}}</p>
 {{else}}
   <p><strong>Écurie : </strong>Pas d'écurie cette année</p>
 {{/if}}
@@ -14,8 +14,12 @@
 {{#each sponsors}}
     <p><strong>{{this.sponom}} </strong>({{this.sposectactivite}})</p>
 {{/each}}
-<p><strong>Qui suis-je ? :</strong> {{pilote.piltexte}}</p>
+<p><strong>Qui suis-je ? :</strong> {{pilote.piltexte}}</p> <br>
 {{#each photos}}
-  <img src="/image/pilote/{{this.phoadresse}}" alt="{{this.phosujet}}">
-  <p> {{this.phocommentaire}} </p>
+   <a  href="/image/pilote/{{this.phoadresse}}" data-lightbox="lightbox2" data-title="{{this.phocommentaire}}"><img src="/image/pilote/{{this.phoadresse}}" alt="{{this.phosujet}}" height="128" width="128"/></a>
 {{/each}}
+<div class="tooltip">Hover over me
+  <img class="tooltiptext" src="/image/pilote/442208.jpg" alt="{{this.phosujet}}" height="128" width="128"/> <br>
+  <p class="tooltiptext">Tooltip text</p>
+</div>
+<script src="/js/lightbox2-2.11.1/dist/js/lightbox-plus-jquery.min.js"></script>

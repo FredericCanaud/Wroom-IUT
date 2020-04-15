@@ -42,8 +42,8 @@ module.exports.InfoEcurie = function(request, response){
       response.listeEcurie = result[1];
       response.voitures = result[2];
       response.pilotes = result[3];
-      console.log(result[0][0]);
-      response.title = "Détail sur l'écurie " + result[0][0].ecunom;
+      console.log(result[3]);
+      response.title = "*Détail sur l'écurie " + result[0][0].ecunom;
       response.render('detailEcurie', response);
    });
  }

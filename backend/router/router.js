@@ -12,43 +12,45 @@ module.exports = function(app){
 
 // Main Routes
 
-    app.get('/accueil', HomeController.Index);
-    app.get('/', HomeController.Index);
+    app.get('/accueil', requireAdmin, HomeController.Index);
+    app.get('/', requireAdmin, HomeController.Index);
 // Pilotes
-    app.get('/pilotes', PiloteController.ListerPilotes);
-    app.get('/ajouterPilote', PiloteController.AjouterPilote);
-    app.post('/ajouterPilote', PiloteController.AjoutPilote);
-    app.get('/modifierPilote/:num', PiloteController.ModifierPilote);
-    app.post('/modifierPilote/:num', PiloteController.ModifPilote);
-    app.get('/supprimerPilote/:num', PiloteController.SupprimerPilote);
+    app.get('/pilotes', requireAdmin, PiloteController.ListerPilotes);
+    app.get('/ajouterPilote', requireAdmin, PiloteController.AjouterPilote);
+    app.post('/ajouterPilote', requireAdmin, PiloteController.AjoutPilote);
+    app.get('/modifierPilote/:num', requireAdmin, PiloteController.ModifierPilote);
+    app.post('/modifierPilote/:num', requireAdmin, PiloteController.ModifPilote);
+    app.get('/supprimerPilote/:num', requireAdmin, PiloteController.SupprimerPilote);
 
 // Circuits
-   app.get('/circuits', CircuitController.ListerCircuits);
-   app.get('/ajouterCircuit', CircuitController.AjouterCircuit);
-   app.post('/ajouterCircuit', CircuitController.AjoutCircuit);
-   app.get('/modifierCircuit/:num', CircuitController.ModifierCircuit);
-   app.post('/modifierCircuit/:num', CircuitController.ModifCircuit);
-   app.get('/supprimerCircuit/:num', CircuitController.SupprimerCircuit);
+   app.get('/circuits', requireAdmin, CircuitController.ListerCircuits);
+   app.get('/ajouterCircuit', requireAdmin, CircuitController.AjouterCircuit);
+   app.post('/ajouterCircuit', requireAdmin, CircuitController.AjoutCircuit);
+   app.get('/modifierCircuit/:num', requireAdmin, CircuitController.ModifierCircuit);
+   app.post('/modifierCircuit/:num', requireAdmin, CircuitController.ModifCircuit);
+   app.get('/supprimerCircuit/:num', requireAdmin, CircuitController.SupprimerCircuit);
 
 // Ecuries
-   app.get('/ecuries', EcurieController.ListerEcurie);
-   app.get('/ajouterEcurie', EcurieController.AjouterEcurie);
-   app.post('/ajouterEcurie', EcurieController.AjoutEcurie);
-   app.get('/modifierEcurie/:num', EcurieController.ModifierEcurie);
-   app.post('/modifierEcurie/:num', EcurieController.ModifEcurie);
-   app.get('/supprimerEcurie/:num', EcurieController.SupprimerEcurie);
+   app.get('/ecuries', requireAdmin, EcurieController.ListerEcurie);
+   app.get('/ajouterEcurie', requireAdmin, EcurieController.AjouterEcurie);
+   app.post('/ajouterEcurie', requireAdmin, EcurieController.AjoutEcurie);
+   app.get('/modifierEcurie/:num', requireAdmin, EcurieController.ModifierEcurie);
+   app.post('/modifierEcurie/:num', requireAdmin, EcurieController.ModifEcurie);
+   app.get('/supprimerEcurie/:num', requireAdmin, EcurieController.SupprimerEcurie);
 
  // Résultats
-   app.get('/resultats', ResultatController.ListerResultat);
-   app.get('/detailGrandPrix/:num', ResultatController.InfoResultat);
+   app.get('/resultats', requireAdmin, ResultatController.ListerGrandPrix);
+   app.post('/resultats', requireAdmin, ResultatController.RedirectionSaisieResultat);
+   app.get('/saisieResultats', requireAdmin, ResultatController.AffichageSaisieResultat);
+   app.post('/saisieResultats', requireAdmin, ResultatController.SaisieResultat);
 
  // Sponsors
-   app.get('/sponsors', SponsorController.ListerSponsors);
-   app.get('/ajouterSponsor', SponsorController.AjouterSponsor);
-   app.post('/ajouterSponsor', SponsorController.AjoutSponsor);
-   app.get('/modifierSponsor/:num', SponsorController.ModifierSponsor);
-   app.post('/modifierSponsor/:num', SponsorController.ModifSponsor);
-   app.get('/supprimerSponsor/:num', SponsorController.SupprimerSponsor);
+   app.get('/sponsors', requireAdmin, SponsorController.ListerSponsors);
+   app.get('/ajouterSponsor', requireAdmin, SponsorController.AjouterSponsor);
+   app.post('/ajouterSponsor', requireAdmin, SponsorController.AjoutSponsor);
+   app.get('/modifierSponsor/:num', requireAdmin, SponsorController.ModifierSponsor);
+   app.post('/modifierSponsor/:num', requireAdmin, SponsorController.ModifSponsor);
+   app.get('/supprimerSponsor/:num', requireAdmin, SponsorController.SupprimerSponsor);
 
  // Administration
    app.get('/login', ConnexionController.Login);

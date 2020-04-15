@@ -44,7 +44,21 @@ module.exports.getDetailEcurie = function (ecunum, callback) {
 					}
 			 });
  };
+ module.exports.getNomEcurie = function (ecunum, callback) {
+ 	 // connection à la base
+ 		db.getConnection(function(err, connexion){
+ 				if(!err){
+ 							// s'il n'y a pas d'erreur de connexion
+ 							// execution de la requête SQL
+ 							 let sql ="SELECT ecunom FROM ecurie WHERE ecunum = " + ecunum;
+ 												console.log (sql);
+ 						connexion.query(sql, callback);
 
+ 						// la connexion retourne dans le pool
+ 						connexion.release();
+ 				 }
+ 			});
+  };
 module.exports.getVoituresFromEcurie = function (ecunum, callback) {
 		// connection à la base
 		 db.getConnection(function(err, connexion){
@@ -67,7 +81,7 @@ module.exports.getVoituresFromEcurie = function (ecunum, callback) {
  				 if(!err){
  							 // s'il n'y a pas d'erreur de connexion
  							 // execution de la requête SQL
- 								let sql ="SELECT pilnum, pilnom, pilprenom FROM pilote pil JOIN ecurie ecu ON ecu.ecunum = pil.ecunum WHERE ecu.ecunum = " + ecunum;
+ 								let sql ="SELECT pil.pilnum, pilnom, pilprenom, phosujet, phoadresse FROM pilote pil JOIN ecurie ecu ON ecu.ecunum = pil.ecunum JOIN photo pho ON pil.pilnum = pho.pilnum WHERE ecu.ecunum = " + ecunum + " GROUP BY pil.pilnum";
  												 console.log (sql);
  						 connexion.query(sql, callback);
 

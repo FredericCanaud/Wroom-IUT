@@ -12,7 +12,7 @@ app.set('port', 6800);
 app.set('views', path.join(__dirname, 'views'));
 
 // routes static, le routeur n'y aura pas accès
-app.use(express.static(path.join(__dirname+ '/public')));
+app.use(express.static(path.join(__dirname+ '/../public')));
 
 app.use(cookieParser());
 

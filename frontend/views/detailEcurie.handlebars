@@ -1,4 +1,4 @@
-<h1> Détail sur l'écurie' {{ecurie.ecunom}} </h1>
+<h1> Détail sur l'écurie {{ecurie.ecunom}} </h1>
 <img src="/image/ecurie/{{ecurie.ecuadresseimage}}">
 <p><strong>Nom : </strong>{{ecurie.ecunom}}</p>
 <p><strong>Directeur : </strong>{{ecurie.ecunomdir}}</p>
@@ -8,11 +8,14 @@
 {{#if pilotes}}
   <p><strong>Pilotes : </strong> </p>
   {{#each pilotes}}
-      <p> <a href="/detailPilote/{{this.pilnum}}">{{this.pilnom}} {{this.pilprenom}} </a></p>
+      <div class="tooltip"><a class="tooltip" href="/detailPilote/{{this.pilnum}}">{{this.pilnom}} {{this.pilprenom}} </a>
+        <img class="tooltiptext" id=#imagetooltip" src="/image/pilote/{{this.phoadresse}}" alt="{{this.phosujet}}" height="128" width="128"/>
+        <h5 class="tooltiptext"> {{this.pilnom}} {{this.pilprenom}} <h5>
+      </div> <br>
   {{/each}}
   <br>
   {{#each voitures}}
-    <img src="/image/ecurie/voiture/{{this.voiadresseimage}}">
+    <img src="/image/ecurie/voiture/{{this.voiadresseimage}}" height="256" width="256">
     <p> {{this.voinom}} </p>
     <p> {{this.typelibelle}} </p>
   {{/each}}

@@ -50,7 +50,7 @@ module.exports.getPiloteNameFirstLetter = function (callback) {
            if(!err){
                  // s'il n'y a pas d'erreur de connexion
                  // execution de la requête SQL
-                  let sql ="SELECT pil.pilnum, pilnom, pilprenom, pildatenais, pilpoids, piltaille, piltexte, phoadresse, ecunom, paynat FROM pilote pil JOIN photo pho ON pil.pilnum = pho.pilnum JOIN ecurie ecu ON pil.ecunum=ecu.ecunum JOIN pays pay ON pil.paynum=pay.paynum WHERE phonum = 1 AND pil.pilnum = " + pilnum;
+                  let sql ="SELECT pil.pilnum, pilnom, pilprenom, pildatenais, pilpoids, piltaille, piltexte, phoadresse, ecunum, paynat FROM pilote pil JOIN photo pho ON pil.pilnum = pho.pilnum  JOIN pays pay ON pil.paynum=pay.paynum WHERE phonum = 1 AND pil.pilnum = "+ pilnum;
                            console.log (sql);
                connexion.query(sql, callback);
 

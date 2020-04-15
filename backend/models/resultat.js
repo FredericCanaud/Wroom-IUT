@@ -11,37 +11,7 @@ let db = require('../configDb');
 * Récupérer l'intégralité les écuries avec l'adresse de la photo du pays de l'écurie
 * @return Un tableau qui contient le N°, le nom de l'écurie et le nom de la photo du drapeau du pays
 */
-module.exports.getListeGrandPrix = function (callback) {
-   // connection à la base
-	db.getConnection(function(err, connexion){
-        if(!err){
-        	  // s'il n'y a pas d'erreur de connexion
-        	  // execution de la requête SQL
-						let sql ="SELECT gpnum, payadrdrap, gpnom FROM " +
-                            "grandprix g INNER JOIN circuit c on c.cirnum = g.cirnum JOIN pays p ";
-						sql= sql + "ON p.paynum=c.paynum ORDER BY cirnom";
-						//console.log (sql);
-            connexion.query(sql, callback);
 
-            // la connexion retourne dans le pool
-            connexion.release();
-         }
-      });
-};
-module.exports.getDetailGrandPrix = function (gpnum, callback) {
-		// connection à la base
-		 db.getConnection(function(err, connexion){
-				 if(!err){
-							 // s'il n'y a pas d'erreur de connexion
-							 // execution de la requête SQL
-								let sql ="SELECT gpnom, gpdate, gpcommentaire FROM grandprix WHERE gpnum = " + gpnum;
-						 connexion.query(sql, callback);
-
-						 // la connexion retourne dans le pool
-						 connexion.release();
-					}
-			 });
- };
 module.exports.getDetailResultat = function (gpnum, callback) {
 		// connection à la base
 		 db.getConnection(function(err, connexion){
@@ -49,7 +19,7 @@ module.exports.getDetailResultat = function (gpnum, callback) {
 							 // s'il n'y a pas d'erreur de connexion
 							 // execution de la requête SQL
 								let sql ="WITH C AS(SELECT ROW_NUMBER() OVER(ORDER BY tempscourse) AS Place, pilnom, pilprenom, tempscourse FROM pilote p JOIN course c on p.pilnum = c.pilnum JOIN grandprix g on g.gpnum=c.gpnum WHERE c.gpnum = " + gpnum + ")";
-								sql = sql + "SELECT Place, pilnom, pilprenom, tempscourse, ptnbpointsplace FROM C JOIN points p ON C.Place = p.ptplace";
+								sql = sql + "SELECT Place, pilnom, tempscourse, ptnbpointsplace FROM C JOIN points p ON C.Place = p.ptplace";
 						 connexion.query(sql, callback);
 
 						 // la connexion retourne dans le pool

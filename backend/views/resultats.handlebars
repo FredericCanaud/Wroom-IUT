@@ -1,0 +1,16 @@
+<div class="titre">
+    <img src="/image/cat_resultat.png">
+    <h1> Résultats </h1>
+    <p> Sélectionner un Grand Prix : </p>
+
+    <form action="" method="post" class="form-example">
+      <div>
+        <select name="gpnum">
+          {{#each grandprix}}
+            <option value="{{this.gpnum}}">{{this.gpnom}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <input type="submit" value="Valider">
+    </form>
+</div>
