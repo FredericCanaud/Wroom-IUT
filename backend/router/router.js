@@ -1,4 +1,3 @@
-
 let HomeController = require('./../controllers/HomeController');
 let ResultatController = require('./../controllers/ResultatController');
 let EcurieController = require('./../controllers/EcurieController');
@@ -43,6 +42,7 @@ module.exports = function(app){
    app.post('/resultats', requireAdmin, ResultatController.RedirectionSaisieResultat);
    app.get('/saisieResultats', requireAdmin, ResultatController.AffichageSaisieResultat);
    app.post('/saisieResultats', requireAdmin, ResultatController.SaisieResultat);
+   app.get('/supprimerResultat/:gpnum/:pilnum', requireAdmin, ResultatController.SupprimerResultat);
 
  // Sponsors
    app.get('/sponsors', requireAdmin, SponsorController.ListerSponsors);

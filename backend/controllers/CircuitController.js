@@ -63,58 +63,15 @@ module.exports.InfoCircuit = function(request, response){
  module.exports.AjoutCircuit = function(request, response) {
    response.title = 'Ajout du circuit en cours...';
 
-   if (request.url == '/upload' && request.method.toLowerCase() == 'post') {
-         var form = new formidable.IncomingForm();
-         form.parse(request, function (err, fields, files) {
-             response.writeHead(200, {'content-type': 'text/plain'});
-             response.write('received upload:\n\n');
-             response.end(util.inspect({fields: fields, files: files}));
-         });
-
-         form.on('fileBegin', function(name, file) {
-         file.path = path.join(__dirname, '/temp/') + file.name;
-                 });
-         form.on('progress', function(bytesReceived, bytesExpected) {
-         var percent_complete = (bytesReceived / bytesExpected) * 100;
-         console.log(percent_complete.toFixed(2));
-                 });
-
-         form.on('end', function (fields, files) {
-             /* Temporary location of our uploaded file */
-             var temp_path = this.openedFiles[0].path;
-             /* The file name of the uploaded file */
-             var file_name = this.openedFiles[0].name;
-             /* Location where we want to copy the uploaded file */
-             var new_location = path.join(__dirname, '/upload/');
-
-             fs.copy(temp_path, new_location + file_name, function (err) {
-                 if (err) {
-                     console.error(err);
-                 } else {
-                     console.log("success!")
-                     fs.unlink(temp_path, function(err) {
-                        if (err) {
-                            console.error(err);
-                            console.log("TROUBLE deletion temp !");
-                        } else {
-                            console.log("success deletion temp !");
-                        }
-                     });
-                 }
-             });
-         });
-
-         return;
-     }
-
    var data = {
      cirnom: request.body.cirnom,
      cirlongueur: request.body.cirlongueur,
      paynum: request.body.paynum,
-     ciradresseimage: request.body.ciradresseimage,
+     ciradresseimage: request.files.ciradresseimage,
      cirnbspectateurs: request.body.cirnbspectateurs,
      cirtext: request.body.cirtext
    }
+   data.ciradresseimage.mv("../public/image/circuit/"+data.ciradresseimage.name);
 
    console.log(data);
    modeleCircuit.ajouterCircuit(data, function(err, res) {

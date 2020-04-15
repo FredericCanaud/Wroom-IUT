@@ -99,7 +99,6 @@ module.exports.getVoituresFromEcurie = function (ecunum, callback) {
 									 let sql ="INSERT INTO ecurie SET ?";
 														console.log (sql);
 								connexion.query(sql, data, callback);
-
 								// la connexion retourne dans le pool
 								connexion.release();
 						 }

@@ -59,4 +59,17 @@ function supprimerEcurie(ecunom, ecunum){
 });
 }
 
-  
+function supprimerResultat(gpnum, pilnum){
+  Swal.fire({
+    title: "Supprimer le résultat ?",
+    text: "Êtes-vous sûr de vouloir supprimer le résultat ?",
+    icon: "error",
+    confirmButtonText: "Supprimer",
+    cancelButtonText: "Annuler",
+    showCancelButton: true,
+  }).then(function (result) {
+  if (result.value) {
+    window.location = "/supprimerResultat/" + gpnum + "/" + pilnum;
+  }
+});
+}

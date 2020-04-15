@@ -39,6 +39,7 @@ module.exports.AjoutSponsor = function(request, response) {
         sponom: request.body.sponom,
         sposectactivite: request.body.sposectactivite
     }
+    console.log(data);
     modeleSponsor.ajouterSponsor(data, function(err, result) {
         if (err) {
             response.fail = "Échec de l'ajout !";

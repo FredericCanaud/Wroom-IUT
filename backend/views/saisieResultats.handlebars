@@ -12,7 +12,7 @@
 		</tr>
 	 {{#each resultat}}
 		<tr>
-      <td> <img src="/image/act_delete.png"> </td>
+      <td> <img src="/image/act_delete.png" onclick="supprimerResultat('{{../gpnum}}','{{this.pilnum}}')"></td>
 			<td> {{this.Place}} </td>
       <td> {{this.pilnom}} </td>
 			<td> {{this.tempscourse}} </td>
@@ -44,3 +44,4 @@
      </form>
 </table>
 <script src="/js/fonctions.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

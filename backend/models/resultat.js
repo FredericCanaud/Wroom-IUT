@@ -18,8 +18,8 @@ module.exports.getDetailResultat = function (gpnum, callback) {
 				 if(!err){
 							 // s'il n'y a pas d'erreur de connexion
 							 // execution de la requête SQL
-								let sql ="WITH C AS(SELECT ROW_NUMBER() OVER(ORDER BY tempscourse) AS Place, pilnom, pilprenom, tempscourse FROM pilote p JOIN course c on p.pilnum = c.pilnum JOIN grandprix g on g.gpnum=c.gpnum WHERE c.gpnum = " + gpnum + ")";
-								sql = sql + "SELECT Place, pilnom, tempscourse, ptnbpointsplace FROM C JOIN points p ON C.Place = p.ptplace";
+								let sql ="WITH C AS(SELECT ROW_NUMBER() OVER(ORDER BY tempscourse) AS Place, p.pilnum, pilnom, pilprenom, tempscourse FROM pilote p JOIN course c on p.pilnum = c.pilnum JOIN grandprix g on g.gpnum=c.gpnum WHERE c.gpnum = " + gpnum + ")";
+								sql = sql + "SELECT Place, pilnum, pilnom, tempscourse, ptnbpointsplace FROM C JOIN points p ON C.Place = p.ptplace";
 						 connexion.query(sql, callback);
 
 						 // la connexion retourne dans le pool

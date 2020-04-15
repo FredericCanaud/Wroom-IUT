@@ -6,6 +6,7 @@ let express         = require('express'),
     path = require('path'),
     formidable = require('formidable'),
     fs = require('fs-extra');
+    fileUpload = require('express-fileupload');
 
 let app = express();
 
@@ -32,6 +33,7 @@ app.use(function(request, response, next){
     next();
 });
 
+app.use(fileUpload());
 /* express-handlebars - https://github.com/ericf/express-handlebars
 *  Handlebars : moteur de template pour Express.
 * il va gérer les vues

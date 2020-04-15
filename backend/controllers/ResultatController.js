@@ -88,3 +88,21 @@ module.exports.AffichageSaisieResultat = function(request, response){
      }
    });
  }
+ module.exports.SupprimerResultat= function(request, response){
+    response.title = "Suppression d'un résultat en cours...";
+    let gpnum = request.params.gpnum;
+    let pilnum = request.params.pilnum;
+    modeleCourse.supprimerCourse(gpnum, pilnum, function(err, res) {
+      if (err) {
+        response.fail = "Échec de la suppresion !";
+        response.render('resultats', response);
+        console.log(err);
+        return;
+      }
+      else {
+          response.redirect("resultats");
+          console.log("C'est bon !");
+          return;
+      }
+    });
+  }

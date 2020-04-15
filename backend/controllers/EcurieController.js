@@ -1,4 +1,5 @@
 let async = require('async');
+
 let modelePays = require('../models/pays.js');
 let modeleEcurie = require('../models/ecurie.js');
 let modeleFournisseurPneu = require('../models/fournisseurPneu.js');
@@ -75,77 +76,36 @@ module.exports.InfoEcurie = function(request, response){
  }
 
  module.exports.AjoutEcurie = function(request, response) {
-   response.title = "Ajout de l'écurie en cours...";
+    response.title = "Ajout de l'écurie en cours...";
 
-   if (request.url == '/upload' && request.method.toLowerCase() == 'post') {
-         var form = new formidable.IncomingForm();
-         form.parse(request, function (err, fields, files) {
-             response.writeHead(200, {'content-type': 'text/plain'});
-             response.write('received upload:\n\n');
-             response.end(util.inspect({fields: fields, files: files}));
-         });
+    var data = {
+      ecunom: request.body.ecunom,
+      ecunomdir: request.body.ecunomdir,
+      ecuadrsiege: request.body.ecuadrsiege,
+      ecupoints: request.body.ecupoints,
+      paynum: request.body.paynum,
+      fpnum: request.body.fpnum,
+      ecuadresseimage: request.files.ecuadresseimage
+    }
 
-         form.on('fileBegin', function(name, file) {
-         file.path = path.join(__dirname, '/temp/') + file.name;
-                 });
-         form.on('progress', function(bytesReceived, bytesExpected) {
-         var percent_complete = (bytesReceived / bytesExpected) * 100;
-         console.log(percent_complete.toFixed(2));
-                 });
+    data.ecuadresseimage.mv("../public/image/ecurie/"+data.ecuadresseimage.name);
 
-         form.on('end', function (fields, files) {
-             /* Temporary location of our uploaded file */
-             var temp_path = this.openedFiles[0].path;
-             /* The file name of the uploaded file */
-             var file_name = this.openedFiles[0].name;
-             /* Location where we want to copy the uploaded file */
-             var new_location = path.join(__dirname, '/upload/');
+    modeleEcurie.ajouterEcurie(data, function(err, res) {
+      if (err) {
+        response.fail = "Échec de l'ajout !";
+        response.render('ajouterEcurie', response);
+        console.log(err);
+        return;
+      }
+      else {
+          response.redirect("/ecuries");
+          console.log("C'est bon !");
+          return;
+      }
+    });
+  }
 
-             fs.copy(temp_path, new_location + file_name, function (err) {
-                 if (err) {
-                     console.error(err);
-                 } else {
-                     console.log("success!")
-                     fs.unlink(temp_path, function(err) {
-                        if (err) {
-                            console.error(err);
-                            console.log("TROUBLE deletion temp !");
-                        } else {
-                            console.log("success deletion temp !");
-                        }
-                     });
-                 }
-             });
-         });
 
-         return;
-     }
-
-   var data = {
-     ecunom: request.body.ecunom,
-     ecunomdir: request.body.ecunomdir,
-     ecuadrsiege: request.body.ecuadrsiege,
-     ecupoints: request.body.ecupoints,
-     paynum: request.body.paynum,
-     fpnum: request.body.fpnum,
-     ecuadresseimage: request.body.ecuadresseimage
-   }
-
-   console.log(data);
-   modeleEcurie.ajouterEcurie(data, function(err, res) {
-     if (err) {
-       response.fail = "Échec de l'ajout !";
-       response.render('ajouterEcurie', response);
-       console.log(err);
-       return;
-     }
-     else {
-         response.redirect("/ecuries");
-         console.log("C'est bon !");
-         return;
-     }
-   });
- }
  module.exports.ModifierEcurie = function(request, response){
     response.title = 'Modifier une Ecurie';
     async.parallel([
