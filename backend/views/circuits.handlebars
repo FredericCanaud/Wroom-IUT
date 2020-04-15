@@ -1,28 +1,28 @@
 <div class="titre">
-  <h1> Gestion des Circuits </h1>
-  <img src="/image/cat_circuit.png">
-  <div>
-    <img src="/image/act_add.png"> <a href="/ajouterCircuit">Ajouter un circuit</a>
-  </div>
+    <h1> Gestion des Circuits </h1>
+    <img src="/image/cat_circuit.png">
+    <div>
+        <img src="/image/act_add.png"> <a href="/ajouterCircuit">Ajouter un circuit</a>
+    </div>
 </div>
 <table border="1">
-		<tr>
-			<th> Nom </th>
-			<th> Longueur </th>
-			<th> Nombre de spectateurs </th>
-			<th> Actions </th>
-		</tr>
-	 {{#each circuits}}
-		<tr>
-			<td> {{this.cirnom}} </td>
-      <td> {{this.cirlongueur}} </td>
-			<td> {{this.cirnbspectateurs}} </td>
-			<td>
-          <img src="/image/act_edit.png"> <a href="modifierCircuit/{{this.cirnum}}">Modifier</a>
-          <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerCircuit('{{this.cirnom}}','{{this.cirnum}}')">Supprimer</a>
-      </td>
+    <tr>
+        <th> Nom </th>
+        <th> Longueur </th>
+        <th> Nombre de spectateurs </th>
+        <th> Actions </th>
     </tr>
-   {{/each}}
+    {{#each circuits}}
+    <tr>
+        <td> {{this.cirnom}} </td>
+        <td> {{this.cirlongueur}} </td>
+        <td> {{this.cirnbspectateurs}} </td>
+        <td>
+            <img src="/image/act_edit.png"> <a href="modifierCircuit/{{this.cirnum}}">Modifier</a>
+            <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerCircuit('{{this.cirnom}}','{{this.cirnum}}')">Supprimer</a>
+        </td>
+    </tr>
+    {{/each}}
 </table>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="/js/fonctions.js"></script>

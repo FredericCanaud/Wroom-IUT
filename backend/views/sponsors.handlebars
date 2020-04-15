@@ -1,27 +1,27 @@
 <div class="titre">
-  <h1> Gestion des Sponsors </h1>
-  <img src="/image/cat_sponsor.png">
-  <div>
-    <img src="/image/act_add.png">
-    <a href="/ajouterSponsor">Ajouter un Sponsor</a>
-  </div>
+    <h1> Gestion des Sponsors </h1>
+    <img src="/image/cat_sponsor.png">
+    <div>
+        <img src="/image/act_add.png">
+        <a href="/ajouterSponsor">Ajouter un Sponsor</a>
+    </div>
 </div>
 <table border="1">
-		<tr>
-			<th> Nom </th>
-			<th> Activité </th>
-			<th> Actions </th>
-		</tr>
-	 {{#each sponsors}}
-		<tr>
-			<td> {{this.sponom}} </td>
-			<td> {{this.sposectactivite}} </td>
-			<td>
-          <img src="/image/act_edit.png"> <a href="modifierSponsor/{{this.sponum}}">Modifier</a>
-          <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerSponsor('{{this.sponom}}','{{this.sponum}}')" href="#">Supprimer</a>
-      </td>
+    <tr>
+        <th> Nom </th>
+        <th> Activité </th>
+        <th> Actions </th>
     </tr>
-   {{/each}}
+    {{#each sponsors}}
+    <tr>
+        <td> {{this.sponom}} </td>
+        <td> {{this.sposectactivite}} </td>
+        <td>
+            <img src="/image/act_edit.png"> <a href="modifierSponsor/{{this.sponum}}">Modifier</a>
+            <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerSponsor('{{this.sponom}}','{{this.sponum}}')" href="#">Supprimer</a>
+        </td>
+    </tr>
+    {{/each}}
 </table>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="/js/fonctions.js"></script>

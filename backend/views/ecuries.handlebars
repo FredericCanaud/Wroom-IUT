@@ -1,29 +1,29 @@
 <div class="titre">
-  <h1> Gestion des Ecuries </h1>
-  <img src="/image/cat_ecurie.png">
-  <div>
-    <img src="/image/act_add.png">
-    <a href="/ajouterEcurie">Ajouter une écurie</a>
-  </div>
+    <h1> Gestion des Ecuries </h1>
+    <img src="/image/cat_ecurie.png">
+    <div>
+        <img src="/image/act_add.png">
+        <a href="/ajouterEcurie">Ajouter une écurie</a>
+    </div>
 </div>
 <table border="1">
-		<tr>
-			<th> Nom </th>
-			<th> Directeur </th>
-			<th> Points </th>
-			<th> Actions </th>
-		</tr>
-	 {{#each ecuries}}
-		<tr>
-			<td> {{this.ecunom}} </td>
-      <td> {{this.ecunomdir}} </td>
-			<td> {{this.ecupoints}} </td>
-			<td>
-          <img src="/image/act_edit.png"> <a href="modifierEcurie/{{this.ecunum}}">Modifier</a>
-          <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerEcurie('{{this.ecunom}}','{{this.ecunum}}')" href="#">Supprimer</a>
-      </td>
+    <tr>
+        <th> Nom </th>
+        <th> Directeur </th>
+        <th> Points </th>
+        <th> Actions </th>
     </tr>
-   {{/each}}
+    {{#each ecuries}}
+    <tr>
+        <td> {{this.ecunom}} </td>
+        <td> {{this.ecunomdir}} </td>
+        <td> {{this.ecupoints}} </td>
+        <td>
+            <img src="/image/act_edit.png"> <a href="modifierEcurie/{{this.ecunum}}">Modifier</a>
+            <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerEcurie('{{this.ecunom}}','{{this.ecunum}}')" href="#">Supprimer</a>
+        </td>
+    </tr>
+    {{/each}}
 </table>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="/js/fonctions.js"></script>

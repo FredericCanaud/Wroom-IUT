@@ -1,47 +1,45 @@
 <h1> Ajouter une écurie </h1>
-
 {{#if fail}}
-  <p>
+<p>
     <strong>{{this.fail}}</strong>
-  </p>
+</p>
 {{/if}}
-
 <form enctype="multipart/form-data" action="" method="post">
-  <div>
-    <label for="ecunom">Nom : </label>
-    <input type="text" name="ecunom" required>
-  </div>
-  <div>
-    <label for="ecunomdir">Directeur : </label>
-    <input type="text" name="ecunomdir" required>
-  </div>
-  <div>
-    <label for="ecuadrsiege">Adresse du siege : </label>
-    <textarea name="ecuadrsiege" rows="2" cols="40" required></textarea>
-  </div>
-  <div>
-    <label for="ecupoints">Points : </label>
-    <input type="number" name="ecupoints"> pts
-  </div>
-  <div>
-    <label for="paynum">Pays : </label>
-    <select name="paynum">
-      {{#each nomsPays}}
-        <option value="{{this.paynum}}">{{this.paynom}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <div>
-    <label for="fpnum">Fournisseur de penu : </label>
-    <select name="fpnum">
-      {{#each nomsFournisseurs}}
-        <option value="{{this.fpnum}}">{{this.fpnom}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <div>
-    <label for="ecuadresseimage">Image : </label>
-    <input type="file" name="ecuadresseimage" required>
-  </div>
-  <input type="submit" value="Ajouter">
+    <div>
+        <label for="ecunom">Nom : </label>
+        <input type="text" name="ecunom" required>
+    </div>
+    <div>
+        <label for="ecunomdir">Directeur : </label>
+        <input type="text" name="ecunomdir" required>
+    </div>
+    <div>
+        <label for="ecuadrsiege">Adresse du siege : </label>
+        <textarea name="ecuadrsiege" rows="2" cols="40" required></textarea>
+    </div>
+    <div>
+        <label for="ecupoints">Points : </label>
+        <input type="number" name="ecupoints"> pts
+    </div>
+    <div>
+        <label for="paynum">Pays : </label>
+        <select name="paynum">
+            {{#each nomsPays}}
+            <option value="{{this.paynum}}">{{this.paynom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <label for="fpnum">Fournisseur de penu : </label>
+        <select name="fpnum">
+            {{#each nomsFournisseurs}}
+            <option value="{{this.fpnum}}">{{this.fpnom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <label for="ecuadresseimage">Image : </label>
+        <input type="file" name="ecuadresseimage" required>
+    </div>
+    <input type="submit" value="Ajouter">
 </form>

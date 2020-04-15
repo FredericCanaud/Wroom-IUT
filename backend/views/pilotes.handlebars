@@ -6,24 +6,24 @@
         <a href="/ajouterPilote">Ajouter un pilote</a>
     </div>
 </div>
-    <table border="1">
-		    <tr>
-			       <th> Nom </th>
-			       <th> Prénom </th>
-			       <th> Date de naissance </th>
-			       <th> Actions </th>
-		    </tr>
-	 {{#each pilotes}}
-	      <tr>
-			       <td> {{this.pilnom}} </td>
-             <td> {{this.pilprenom}} </td>
-			       <td> {{formatDate this.pildatenais 'DD/MM/YYYY'}} </td>
-			       <td>
-                 <img src="/image/act_edit.png"> <a href="modifierPilote/{{this.pilnum}}">Modifier</a>
-                 <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerPilote('{{this.pilnom}}','{{this.pilnum}}')" href="#">Supprimer</a>
-            </td>
-        </tr>
-   {{/each}}
-  </table>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <script src="/js/fonctions.js"></script>
+<table border="1">
+    <tr>
+        <th> Nom </th>
+        <th> Prénom </th>
+        <th> Date de naissance </th>
+        <th> Actions </th>
+    </tr>
+    {{#each pilotes}}
+    <tr>
+        <td> {{this.pilnom}} </td>
+        <td> {{this.pilprenom}} </td>
+        <td> {{formatDate this.pildatenais 'DD/MM/YYYY'}} </td>
+        <td>
+            <img src="/image/act_edit.png"> <a href="modifierPilote/{{this.pilnum}}">Modifier</a>
+            <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerPilote('{{this.pilnom}}','{{this.pilnum}}')" href="#">Supprimer</a>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="/js/fonctions.js"></script>

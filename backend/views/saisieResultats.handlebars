@@ -1,47 +1,47 @@
 <div class="titre">
-  <img src="/image/cat_resultat.png">
-  <h1> Saisie des résultats </h1>
+    <img src="/image/cat_resultat.png">
+    <h1> Saisie des résultats </h1>
 </div>
 <table border="1">
-		<tr>
-      <th> </th>
-			<th> Place </th>
-			<th> Pilote </th>
-			<th> Temps </th>
-			<th> Nb points </th>
-		</tr>
-	 {{#each resultat}}
-		<tr>
-      <td> <img src="/image/act_delete.png" onclick="supprimerResultat('{{../gpnum}}','{{this.pilnum}}')"></td>
-			<td> {{this.Place}} </td>
-      <td> {{this.pilnom}} </td>
-			<td> {{this.tempscourse}} </td>
-			<td> {{this.ptnbpointsplace}} </td>
+    <tr>
+        <th> </th>
+        <th> Place </th>
+        <th> Pilote </th>
+        <th> Temps </th>
+        <th> Nb points </th>
     </tr>
-   {{/each}}
-   <tr>
-     <td></td>
-     <form action="" method="post">
-       <div>
-           <input type="hidden" name="gpnum" value="{{gpnum}}">
-       </div>
-       <td>{{nombrePilotesNotInGP}}</td>
-       <td>
-         <div>
-           <select name="pilnum">
-           {{#each pilotesNotInGP}}
-              <option value="{{this.pilnum}}">{{this.pilnom}}</option>
-           {{/each}}
-           </select>
-         </div>
-       </td>
-       <td>
-         <input type="number" id="timeTrial" name="minutes" min="00" max="59" value="00"> : <input type="number" name="secondes" id="timeTrial" min="00" max="59" value="00"> : <input type="number" id="timeTrial" name="millisecondes" min="00" max="59" value="00">
-       </td>
-       <td>
-         <input type="submit" value="Ajouter">
-       </td>
-     </form>
+    {{#each resultat}}
+    <tr>
+        <td> <img src="/image/act_delete.png" onclick="supprimerResultat('{{../gpnum}}','{{this.pilnum}}')"></td>
+        <td> {{this.Place}} </td>
+        <td> {{this.pilnom}} </td>
+        <td> {{this.tempscourse}} </td>
+        <td> {{this.ptnbpointsplace}} </td>
+    </tr>
+    {{/each}}
+    <tr>
+        <td></td>
+        <form action="" method="post">
+            <div>
+                <input type="hidden" name="gpnum" value="{{gpnum}}">
+            </div>
+            <td>{{nombrePilotesNotInGP}}</td>
+            <td>
+                <div>
+                    <select name="pilnum">
+                        {{#each pilotesNotInGP}}
+                        <option value="{{this.pilnum}}">{{this.pilnom}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </td>
+            <td>
+                <input type="number" id="timeTrial" name="minutes" min="00" max="59" value="00"> : <input type="number" name="secondes" id="timeTrial" min="00" max="59" value="00"> : <input type="number" id="timeTrial" name="millisecondes" min="00" max="59" value="00">
+            </td>
+            <td>
+                <input type="submit" value="Ajouter">
+            </td>
+        </form>
 </table>
 <script src="/js/fonctions.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

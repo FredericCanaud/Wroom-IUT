@@ -1,28 +1,28 @@
+
+
 <h1> Ajouter un sponsor </h1>
-
 {{#if fail}}
-  <p>
+<p>
     <strong>{{this.fail}}</strong>
-  </p>
+</p>
 {{/if}}
-
 <form action="" method="post" class="form-example">
-  <div>
-    <label for="sponom">Nom : </label>
-    <input type="text" name="sponom" required>
-  </div>
-  <div>
-    <label for="sposectactivite">Secteur d'activité : </label>
-    <input type="text" name="sposectactivite" required>
-  </div>
-  <div>
-    <label for="ecunum">Ecurie sponsorisée: </label>
-    <select name="ecunum">
-      <option value="">Aucune</option>
-      {{#each ecuries}}
-        <option value="{{this.ecunum}}">{{this.ecunom}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <input type="submit" value="Ajouter">
+    <div>
+        <label for="sponom">Nom : </label>
+        <input type="text" name="sponom" required>
+    </div>
+    <div>
+        <label for="sposectactivite">Secteur d'activité : </label>
+        <input type="text" name="sposectactivite" required>
+    </div>
+    <div>
+        <label for="ecunum">Ecurie sponsorisée: </label>
+        <select name="ecunum">
+            <option value="">Aucune</option>
+            {{#each ecuries}}
+            <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <input type="submit" value="Ajouter">
 </form>

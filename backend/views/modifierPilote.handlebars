@@ -1,66 +1,64 @@
 <h1> Modifier un pilote </h1>
-
 {{#if fail}}
-  <p>
+<p>
     <strong>{{this.fail}}</strong>
-  </p>
+</p>
 {{/if}}
-
 <form action="" method="post" class="form-example">
-  <div>
-      <input type="hidden" name="pilnum" value="{{pilote.pilnum}}">
-  </div>
-  <div>
-    <label for="pilprenom">Prénom : </label>
-    <input type="text" name="pilprenom" value="{{pilote.pilprenom}}" required>
-  </div>
-  <div>
-    <label for="pilnom">Nom : </label>
-    <input type="text" name="pilnom" value="{{pilote.pilnom}}" required>
-  </div>
-  <div>
-    <label for="pildatenais">Date de naissance : </label>
-    <input type="date" name="pildatenais" value="{{formatDate pilote.pildatenais 'D MMMM YYYY'}}" required>
-  </div>
-  <div>
-    <label for="paynum">Nationnnalité : </label>
-    <select name="paynum">
-      {{#each nationalites}}
-          {{#ifEquals this.paynat ../pilote.paynat}}
-              <option value="{{this.paynum}}" selected>{{this.paynat}}</option>
-          {{else}}
-              <option value="{{this.paynum}}">{{this.paynat}}</option>
-          {{/ifEquals}}
-      {{/each}}
-    </select>
-  </div>
-  <div>
-    <label for="ecunum">Ecurie : </label>
-    <select name="ecunum">
-      {{#each ecuries}}
-          {{#ifEquals this.ecunom ../pilote.ecunom}}
-              <option value="{{this.ecunum}}" selected>{{this.ecunom}}</option>
-          {{else}}
-              <option value="{{this.ecunum}}">{{this.ecunom}}</option>
-          {{/ifEquals}}
-      {{/each}}
-    </select>
-  </div>
-  <div>
-    <label for="pilpoints">Points : </label>
-    <input type="text" name="pilpoints" value="{{pilote.pilpoints}}" required> pts
-  </div>
-  <div>
-    <label for="pilpoids">Poids : </label>
-    <input type="text" name="pilpoids" value="{{pilote.pilpoids}}" required> kg
-  </div>
-  <div>
-    <label for="piltaille">Taille : </label>
-    <input type="text" name="piltaille" value="{{pilote.piltaille}}" required> cm
-  </div>
-  <div>
-    <label for="piltexte">Description : </label>
-    <textarea name="piltexte" rows="10" cols="60" required>{{pilote.piltexte}}</textarea>
-  </div>
-  <input type="submit" value="Modifier">
+    <div>
+        <input type="hidden" name="pilnum" value="{{pilote.pilnum}}">
+    </div>
+    <div>
+        <label for="pilprenom">Prénom : </label>
+        <input type="text" name="pilprenom" value="{{pilote.pilprenom}}" required>
+    </div>
+    <div>
+        <label for="pilnom">Nom : </label>
+        <input type="text" name="pilnom" value="{{pilote.pilnom}}" required>
+    </div>
+    <div>
+        <label for="pildatenais">Date de naissance : </label>
+        <input type="date" name="pildatenais" value="{{formatDate pilote.pildatenais 'D MMMM YYYY'}}" required>
+    </div>
+    <div>
+        <label for="paynum">Nationnnalité : </label>
+        <select name="paynum">
+            {{#each nationalites}}
+            {{#ifEquals this.paynat ../pilote.paynat}}
+            <option value="{{this.paynum}}" selected>{{this.paynat}}</option>
+            {{else}}
+            <option value="{{this.paynum}}">{{this.paynat}}</option>
+            {{/ifEquals}}
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <label for="ecunum">Ecurie : </label>
+        <select name="ecunum">
+            {{#each ecuries}}
+            {{#ifEquals this.ecunom ../pilote.ecunom}}
+            <option value="{{this.ecunum}}" selected>{{this.ecunom}}</option>
+            {{else}}
+            <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+            {{/ifEquals}}
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <label for="pilpoints">Points : </label>
+        <input type="text" name="pilpoints" value="{{pilote.pilpoints}}" required> pts
+    </div>
+    <div>
+        <label for="pilpoids">Poids : </label>
+        <input type="text" name="pilpoids" value="{{pilote.pilpoids}}" required> kg
+    </div>
+    <div>
+        <label for="piltaille">Taille : </label>
+        <input type="text" name="piltaille" value="{{pilote.piltaille}}" required> cm
+    </div>
+    <div>
+        <label for="piltexte">Description : </label>
+        <textarea name="piltexte" rows="10" cols="60" required>{{pilote.piltexte}}</textarea>
+    </div>
+    <input type="submit" value="Modifier">
 </form>

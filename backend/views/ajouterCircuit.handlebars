@@ -1,40 +1,37 @@
-
 <h1> Ajouter un circuit </h1>
-
 {{#if fail}}
-  <p>
+<p>
     <strong>{{this.fail}}</strong>
-  </p>
+</p>
 {{/if}}
-
 <form action="" enctype="multipart/form-data" method="post">
-  <div>
-    <label for="cirnom">Nom : </label>
-    <input type="text" name="cirnom" required>
-  </div>
-  <div>
-    <label for="cirlongueur">Longueur : </label>
-    <input type="text" name="cirlongueur" required> m
-  </div>
-  <div>
-    <label for="paynum">Pays : </label>
-    <select name="paynum">
-      {{#each nomsPays}}
-        <option value="{{this.paynum}}">{{this.paynom}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <div>
-    <label for="ciradresseimage">Image : </label>
-    <input type="file" name="ciradresseimage" required>
-  </div>
-  <div>
-    <label for="cirnbspectateurs">Nombre de spectateurs : </label>
-    <input type="number" name="cirnbspectateurs" required> personnes
-  </div>
-  <div>
-    <label for="cirtext">Description : </label>
-    <textarea name="cirtext" rows="2" cols="40" required></textarea>
-  </div>
-  <input type="submit" value="Ajouter">
+    <div>
+        <label for="cirnom">Nom : </label>
+        <input type="text" name="cirnom" required>
+    </div>
+    <div>
+        <label for="cirlongueur">Longueur : </label>
+        <input type="text" name="cirlongueur" required> m
+    </div>
+    <div>
+        <label for="paynum">Pays : </label>
+        <select name="paynum">
+            {{#each nomsPays}}
+            <option value="{{this.paynum}}">{{this.paynom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <label for="ciradresseimage">Image : </label>
+        <input type="file" name="ciradresseimage" required>
+    </div>
+    <div>
+        <label for="cirnbspectateurs">Nombre de spectateurs : </label>
+        <input type="number" name="cirnbspectateurs" required> personnes
+    </div>
+    <div>
+        <label for="cirtext">Description : </label>
+        <textarea name="cirtext" rows="2" cols="40" required></textarea>
+    </div>
+    <input type="submit" value="Ajouter">
 </form>

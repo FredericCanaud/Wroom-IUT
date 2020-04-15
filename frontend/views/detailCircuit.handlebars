@@ -1,9 +1,11 @@
 <table class="tabpayscir">
-	 {{#each listeCircuit}}
-		<tr><td><img class="drapeau" src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
-      <a href="/detailCircuit/{{this.cirnum}}"> {{this.cirnom}}</a>
-    </td></tr>
- {{/each}}
+   {{#each listeCircuit}}
+   <tr>
+      <td><img class="drapeau" src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+         <a href="/detailCircuit/{{this.cirnum}}"> {{this.cirnom}}</a>
+      </td>
+   </tr>
+   {{/each}}
 </table>
 <h1> Détail sur le circuit {{circuit.cirnom}} </h1>
 <img src="/image/circuit/{{circuit.ciradresseimage}}">

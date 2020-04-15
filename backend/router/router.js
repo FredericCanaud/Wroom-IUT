@@ -5,6 +5,7 @@ let PiloteController = require('./../controllers/PiloteController');
 let CircuitController = require('./../controllers/CircuitController');
 let ConnexionController = require('./../controllers/ConnexionController');
 let SponsorController = require('./../controllers/SponsorController');
+let PhotoController = require('./../controllers/PhotoController');
 
 // Routes
 module.exports = function(app){
@@ -13,6 +14,15 @@ module.exports = function(app){
 
     app.get('/accueil', requireAdmin, HomeController.Index);
     app.get('/', requireAdmin, HomeController.Index);
+
+// Photos
+
+    app.get('/photos', requireAdmin, PhotoController.ListerPilotes);
+    app.post('/photos', requireAdmin, PhotoController.RedirectionSaisiePhotos);
+    app.get('/saisiePhotos', requireAdmin, PhotoController.AffichageSaisiePhotos);
+    app.post('/saisiePhotos', requireAdmin, PhotoController.SaisiePhotos);
+    app.get('/supprimerPhoto/:phonum/:pilnum', requireAdmin, PhotoController.SupprimerPhoto);
+
 // Pilotes
     app.get('/pilotes', requireAdmin, PiloteController.ListerPilotes);
     app.get('/ajouterPilote', requireAdmin, PiloteController.AjouterPilote);
@@ -58,8 +68,8 @@ module.exports = function(app){
    app.get('/deconnexion', ConnexionController.Deconnexion);
 
 // Tout le reste
-app.get('*', HomeController.NotFound);
-app.post('*', HomeController.NotFound);
+    app.get('*', HomeController.NotFound);
+    app.post('*', HomeController.NotFound);
 
 };
 
