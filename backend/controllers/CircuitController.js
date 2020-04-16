@@ -126,10 +126,12 @@ module.exports.ModifCircuit = function(request, response) {
         cirnom: request.body.cirnom,
         cirlongueur: request.body.cirlongueur,
         paynum: request.body.paynum,
-        ciradresseimage: request.body.ciradresseimage,
+        ciradresseimage: request.files.ciradresseimage,
         cirnbspectateurs: request.body.cirnbspectateurs,
         cirtext: request.body.cirtext
     }
+
+    data.ciradresseimage.mv("../public/image/circuit/" + data.ciradresseimage.name);
 
     console.log(data);
     modeleCircuit.modifierCircuit(data, function(err, res) {

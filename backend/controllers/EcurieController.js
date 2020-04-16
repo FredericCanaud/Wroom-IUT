@@ -159,10 +159,12 @@ module.exports.ModifEcurie = function(request, response) {
         ecunomdir: request.body.ecunomdir,
         ecuadrsiege: request.body.ecuadrsiege,
         ecupoints: request.body.ecupoints,
-        ecuadresseimage: request.body.ecuadresseimage,
+        ecuadresseimage: request.files.ecuadresseimage,
         paynum: request.body.paynum,
         fpnum: request.body.fpnum
     }
+
+    data.ecuadresseimage.mv("../public/image/ecurie/" + data.ecuadresseimage.name);
 
     console.log(data);
     modeleEcurie.modifierEcurie(data, function(err, res) {

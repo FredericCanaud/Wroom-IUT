@@ -1,1 +1,11 @@
-<h1>Ecrire ici la page d'acceuil du site</h1>
+<div>
+  <div>
+    <h1>WROOM, l'encyclopédie de la F1</h1>
+    <div>
+        <h2>Derniers résultats</h2>
+        <h3>{{dernierResultat.0.gpnom}}</h3>
+        <p>{{formatDate dernierResultat.0.gpdate 'DD/MM/YYYY'}}</p>
+        <p>Date de dernière mise à jour : {{formatDate dernierResultat.0.gpdatemaj 'DD/MM/YYYY'}}</p>
+        <a href="/detailGrandPrix/{{dernierResultat.0.gpnum}}">Voir les résultats </a>
+    </div>
+</div>

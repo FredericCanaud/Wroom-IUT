@@ -32,7 +32,7 @@ module.exports.getDetailGrandPrix = function(gpnum, callback) {
             let sql = "SELECT gpnom, gpdate, gpcommentaire FROM grandprix WHERE gpnum = " + gpnum;
             connexion.query(sql, callback);
             connexion.release();
-						
+
         }
     });
 };
@@ -45,6 +45,5 @@ module.exports.getDetailResultat = function(gpnum, callback) {
             sql = sql + "SELECT Place, pilnom, pilprenom, tempscourse, ptnbpointsplace FROM C JOIN points p ON C.Place = p.ptplace";
             connexion.query(sql, callback);
             connexion.release();
-
-    });
+    }});
 };
