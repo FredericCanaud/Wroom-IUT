@@ -85,8 +85,9 @@ module.exports.AjoutCircuit = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/circuits");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien ajouté le circuit " + data.cirnom;
+            response.entite = "circuits";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -141,8 +142,9 @@ module.exports.ModifCircuit = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/circuits");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien modifié le circuit " + data.cirnom;
+            response.entite = "circuits";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -177,6 +179,8 @@ module.exports.SupprimerCircuit = function(request, response) {
                 console.log(err);
                 return;
             }
-            response.redirect('/circuits');
+            response.confirmation = "Vous avez bien supprimé le circuit ";
+            response.entite = "circuits";
+            response.render('confirmation', response);
         });
 }

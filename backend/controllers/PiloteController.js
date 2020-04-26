@@ -70,8 +70,9 @@ module.exports.AjoutPilote = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/pilotes");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien ajouté le pilote " + data.pilnom;
+            response.entite = "pilotes";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -132,8 +133,9 @@ module.exports.ModifPilote = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/pilotes");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien modifié le pilote " + data.pilnom;
+            response.entite = "pilotes";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -173,6 +175,8 @@ module.exports.SupprimerPilote = function(request, response) {
                 console.log(err);
                 return;
             }
-            response.redirect('/pilotes');
+            response.confirmation = "Vous avez bien supprimé le pilote";
+            response.entite = "pilotes";
+            response.render('confirmation', response);
         });
 }

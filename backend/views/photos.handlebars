@@ -3,13 +3,13 @@
     <h1> Photos des pilotes </h1>
     <p> Sélectionner un pilote : </p>
     <form action="" method="post" class="form-example">
-        <div>
+        <div class="titre">
             <select name="pilnum">
                 {{#each pilotes}}
                 <option value="{{this.pilnum}}">{{this.pilnom}}</option>
                 {{/each}}
             </select>
+            <input type="submit" value="Valider">
         </div>
-        <input type="submit" value="Valider">
     </form>
 </div>

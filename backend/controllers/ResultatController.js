@@ -86,8 +86,9 @@ module.exports.SaisieResultat = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/resultats");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien ajouté le résultat !";
+            response.entite = "resultats";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -103,8 +104,9 @@ module.exports.SupprimerResultat = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("resultats");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien supprimé le résultat !";
+            response.entite = "resultats";
+            response.render('confirmation', response);
             return;
         }
     });

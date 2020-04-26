@@ -18,7 +18,7 @@ module.exports.getEcuries = function(callback) {
             let sql = "SELECT ecunum, ecunom, ecunomdir, ecupoints FROM ecurie ORDER BY ecunom";
             connexion.query(sql, callback);
             connexion.release();
-						
+
         }
     });
 };
@@ -115,7 +115,7 @@ module.exports.getEcuriesNotSponsored = function(sponum, callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
 
-            let sql = "SELECT DISTINCT f.ecunum, ecunom FROM finance f JOIN ecurie e ON e.ecunum = f.ecunum WHERE f.ecunum NOT IN(SELECT f.ecunum FROM finance f JOIN ecurie e ON e.ecunum = f.ecunum WHERE sponum=" + sponum + ")";
+            let sql = "SELECT DISTINCT ecunum, ecunom FROM ecurie WHERE ecunum NOT IN(SELECT f.ecunum FROM finance f JOIN ecurie e ON e.ecunum = f.ecunum WHERE sponum=" + sponum + ")";
             connexion.query(sql, sponum, callback);
             connexion.release();
 

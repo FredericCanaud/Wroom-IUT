@@ -56,8 +56,9 @@ module.exports.SaisiePhotos = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("photos");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien ajouté la photo " + data.phoadresse;
+            response.entite = "photos";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -73,8 +74,9 @@ module.exports.SupprimerPhoto = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/photos");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien supprimé la photo";
+            response.entite = "photos";
+            response.render('confirmation', response);
             return;
         }
     });

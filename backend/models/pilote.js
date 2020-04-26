@@ -42,7 +42,7 @@ module.exports.getDetailPilote = function(pilnum, callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
 
-            let sql = "SELECT pil.pilnum, pilnom, pilprenom, pildatenais, pilpoids, pilpoints, piltaille, piltexte, phoadresse, ecunom, paynat FROM pilote pil JOIN photo pho ON pil.pilnum = pho.pilnum JOIN ecurie ecu ON pil.ecunum=ecu.ecunum JOIN pays pay ON pil.paynum=pay.paynum WHERE phonum = 1 AND pil.pilnum = " + pilnum;
+            let sql = "SELECT pil.pilnum, pilnom, pilprenom, pildatenais, pilpoids, pilpoints, piltaille, piltexte, ecunom, paynat FROM pilote pil JOIN ecurie ecu ON pil.ecunum=ecu.ecunum JOIN pays pay ON pil.paynum=pay.paynum WHERE pil.pilnum = " + pilnum;
             connexion.query(sql, callback);
             connexion.release();
 
@@ -118,7 +118,7 @@ module.exports.updatePiloteSansEcurie = function(ecunum, callback) {
             let sql = "UPDATE pilote SET ecunum=NULL WHERE ecunum=" + ecunum;
             connexion.query(sql, callback);
             connexion.release();
-            
+
         }
     });
 };

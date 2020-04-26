@@ -109,8 +109,9 @@ module.exports.AjoutEcurie = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/ecuries");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien ajouté l'écurie " + data.ecunom;
+            response.entite = "ecuries";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -174,8 +175,9 @@ module.exports.ModifEcurie = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/ecuries");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien modifié l'écurie " + data.ecunom;
+            response.entite = "ecuries";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -210,6 +212,8 @@ module.exports.SupprimerEcurie = function(request, response) {
                 console.log(err);
                 return;
             }
-            response.redirect('/ecuries');
+            response.confirmation = "Vous avez bien supprimé l'écurie";
+            response.entite = "ecuries";
+            response.render('confirmation', response);
         });
 }

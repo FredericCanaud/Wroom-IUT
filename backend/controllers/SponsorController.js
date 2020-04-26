@@ -47,23 +47,29 @@ module.exports.AjoutSponsor = function(request, response) {
             console.log(err);
             return;
         }
-        var data2 = {
-            ecunum: request.body.ecunum,
-            sponum: result.insertId
-        }
-        modeleFinance.ajouterFinancement(data2, function(err, result) {
-            if (err) {
-                response.fail = "Échec de l'ajout !";
-                response.render('/ajouterSponsor', response);
-                console.log(err);
-                return;
-            } else {
-                response.redirect("/sponsors");
-                console.log("C'est bon !");
-                return;
+        sponum: result.insertId;
+        var ecunums = request.body.ecunum;
+        for (x in ecunums) {
+            var data2 = {
+                sponum: result.insertId,
+                ecunum: ecunums[x]
             }
-        });
+            modeleFinance.modifierFinancement(data2, function(err, res) {
+                if (err) {
+                    response.fail = "Échec de la modification !";
+                    response.render('/ajouterSponsor', response);
+                    console.log(err);
+                    return;
+                }
+            });
+        }
+
     });
+
+    response.confirmation = "Vous avez bien ajouté le sponsor " + data.sponom;
+    response.entite = "sponsors";
+    response.render('confirmation', response);
+    return;
 }
 module.exports.ModifierSponsor = function(request, response) {
     response.title = 'Modifier un Sponsor';
@@ -153,8 +159,9 @@ module.exports.ModifSponsor = function(request, response) {
             console.log(err);
             return;
         } else {
-            response.redirect("/sponsors");
-            console.log("C'est bon !");
+            response.confirmation = "Vous avez bien modifié le sponsor " + data.sponom;
+            response.entite = "sponsors";
+            response.render('confirmation', response);
             return;
         }
     });
@@ -185,6 +192,8 @@ module.exports.SupprimerSponsor = function(request, response) {
                 console.log(err);
                 return;
             }
-            response.redirect('/sponsors');
+            response.confirmation = "Vous avez bien supprimé le sponsor !";
+            response.entite = "sponsors";
+            response.render('confirmation', response);
         });
 }
