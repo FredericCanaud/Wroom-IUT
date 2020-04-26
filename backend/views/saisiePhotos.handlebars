@@ -1,41 +1,42 @@
 <div class="centre">
+    <img src="/image/appareil_photo.png" width="64" height="64">
     <h1> Saisie des photos des pilotes </h1>
-<table border="1">
-    <tr>
-        <th> </th>
-        <th> Image </th>
-        <th> Sujet </th>
-        <th> Commentaire </th>
-    </tr>
+    <table border="1">
+        <tr>
+            <th> </th>
+            <th> Image </th>
+            <th> Sujet </th>
+            <th> Commentaire </th>
+        </tr>
     {{#each photos}}
-    <tr>
-        <td> <img src="/image/act_delete.png" onclick="supprimerPhoto('{{this.phonum}}','{{../pilnum}}')"></td>
-        <td> <img src="/image/pilote/{{this.phoadresse}}" width="128" height="128"></td>
-        <td> {{this.phosujet}} </td>
-        <td> {{this.phocommentaire}} </td>
-    </tr>
+        <tr>
+            <td> <img src="/image/act_delete.png" onclick="supprimerPhoto('{{this.phonum}}','{{../pilnum}}')"></td>
+            <td> <img src="/image/pilote/{{this.phoadresse}}" width="128" height="128"></td>
+            <td> {{this.phosujet}} </td>
+            <td> {{this.phocommentaire}} </td>
+        </tr>
     {{/each}}
-</table>
-<h1> Ajouter une photo </h1>
-<form action="" enctype="multipart/form-data" method="post" class="centre">
-    <div>
-        <input type="hidden" name="pilnum" value="{{pilnum}}">
-        <input type="hidden" name="phonum" value="{{nombrePhotos}}">
-    </div>
-    <div>
-        <label for="phoadresse">Image : </label>
-        <input type="file" name="phoadresse" required>
-    </div>
-    <div>
-        <label for="phosujet">Sujet : </label>
-        <input type="text" name="phosujet" required>
-    </div>
-    <div>
-        <label for="phocommentaire">Commentaire : </label>
-        <input type="text" name="phocommentaire" required>
-    </div>
-    <input type="submit" value="Ajouter">
-</form>
+    </table>
+    <h1> Ajouter une photo </h1>
+    <form action="" enctype="multipart/form-data" method="post" class="centre">
+        <div>
+            <input type="hidden" name="pilnum" value="{{pilnum}}">
+            <input type="hidden" name="phonum" value="{{nombrePhotos}}">
+        </div>
+        <div>
+            <label for="phoadresse">Image : </label>
+            <input type="file" name="phoadresse" required>
+        </div>
+        <div>
+            <label for="phosujet">Sujet : </label>
+            <input type="text" name="phosujet" required>
+        </div>
+        <div>
+            <label for="phocommentaire">Commentaire : </label>
+            <input type="text" name="phocommentaire" required>
+        </div>
+        <input type="submit" value="Ajouter">
+    </form>
 </div>
 
 <script src="/js/fonctions.js"></script>
