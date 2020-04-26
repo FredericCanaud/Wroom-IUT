@@ -1,29 +1,31 @@
+<div class="centre">
+  <h1> Ajouter un sponsor </h1>
+  {{#if fail}}
+  <p>
+      <strong>{{this.fail}}</strong>
+  </p>
+  {{/if}}
+  <form action="" method="post" class="form-example">
+      <div>
+          <label for="sponom">Nom : </label>
+          <input type="text" name="sponom" required>
+      </div>
+      <div>
+          <label for="sposectactivite">Secteur d'activité : </label>
+          <input type="text" name="sposectactivite" required>
+      </div>
+      <div>
+          <label for="ecunum">Ecurie(s) sponsorisée(s): </label><br><br>
 
+          {{#each ecuries}}
+              <input type="checkbox" name="ecunum" value="{{this.ecunum}}">
+              <label for="ecunum">{{this.ecunom}}</label><br>
+          {{/each}}
 
-<h1> Ajouter un sponsor </h1>
-{{#if fail}}
-<p>
-    <strong>{{this.fail}}</strong>
-</p>
-{{/if}}
-<form action="" method="post" class="form-example">
-    <div>
-        <label for="sponom">Nom : </label>
-        <input type="text" name="sponom" required>
-    </div>
-    <div>
-        <label for="sposectactivite">Secteur d'activité : </label>
-        <input type="text" name="sposectactivite" required>
-    </div>
-    <div>
-        <label for="ecunum">Ecurie(s) sponsorisée(s): </label><br><br>
-
-        {{#each ecuries}}
-            <input type="checkbox" name="ecunum" value="{{this.ecunum}}">
-            <label for="ecunum">{{this.ecunom}}</label><br>
-        {{/each}}
-
-        </select>
-    </div>
-    <input type="submit" value="Ajouter">
-</form>
+          </select>
+      </div>
+      <div class="centre">
+          <input type="submit" value="Ajouter">
+      </div>
+  </form>
+</div>

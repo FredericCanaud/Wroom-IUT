@@ -1,37 +1,40 @@
-<h1> Modifier un sponsor </h1>
-{{#if fail}}
-<p>
-    <strong>{{this.fail}}</strong>
-</p>
-{{/if}}
-<form action="" method="post" class="form-example">
-    <div>
-        <input type="hidden" name="sponum" value="{{sponsor.sponum}}">
-    </div>
-    <div>
-        <label for="sponom">Nom : </label>
-        <input type="text" name="sponom" value="{{sponsor.sponom}}" required>
-    </div>
-    <div>
-        <label for="sposectactivite">Secteur d'activité : </label>
-        <input type="text" name="sposectactivite" value="{{sponsor.sposectactivite}}" required>
-    </div>
-    <div>
-        <label for="ecunum">Ecurie(s) sponsorisée(s): </label><br><br>
+<div class="centre">
+  <h1> Modifier un sponsor </h1>
+  {{#if fail}}
+  <p>
+      <strong>{{this.fail}}</strong>
+  </p>
+  {{/if}}
+  <form action="" method="post" class="form-example">
+      <div>
+          <input type="hidden" name="sponum" value="{{sponsor.sponum}}">
+      </div>
+      <div>
+          <label for="sponom">Nom : </label>
+          <input type="text" name="sponom" value="{{sponsor.sponom}}" required>
+      </div>
+      <div>
+          <label for="sposectactivite">Secteur d'activité : </label>
+          <input type="text" name="sposectactivite" value="{{sponsor.sposectactivite}}" required>
+      </div>
+      <div>
+          <label for="ecunum">Ecurie(s) sponsorisée(s): </label><br><br>
 
-        {{#each ecuriesSponsorisees}}
-        <input type="hidden" name="ecunumDejaSponso" value="{{this.ecunum}}">
-        <input type="checkbox" name="ecunum" value="{{this.ecunum}}" checked>
-        <label for="ecunum">{{this.ecunom}}</label><br>
-        {{/each}}
+          {{#each ecuriesSponsorisees}}
+          <input type="hidden" name="ecunumDejaSponso" value="{{this.ecunum}}">
+          <input type="checkbox" name="ecunum" value="{{this.ecunum}}" checked>
+          <label for="ecunum">{{this.ecunom}}</label><br>
+          {{/each}}
 
-        {{#each ecuriesNonSponsorisees}}
-        <input type="checkbox" name="ecunum" value="{{this.ecunum}}">
-        <label for="ecunum">{{this.ecunom}}</label><br>
-        {{/each}}
+          {{#each ecuriesNonSponsorisees}}
+          <input type="checkbox" name="ecunum" value="{{this.ecunum}}">
+          <label for="ecunum">{{this.ecunom}}</label><br>
+          {{/each}}
 
-        </select>
-    </div>
-    <br>
-    <input type="submit" value="Modifier">
-</form>
+          </select>
+      </div>
+      <div class="centre">
+          <input type="submit" value="Modifier">
+      </div>
+  </form>
+</div>
