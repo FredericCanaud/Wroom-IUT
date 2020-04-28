@@ -87,3 +87,18 @@ function supprimerPhoto(phonum, pilnum) {
         }
     });
 }
+
+function supprimerVoiture(voinom, voinum) {
+    Swal.fire({
+        title: "Supprimer la voiture ?",
+        text: "Êtes-vous sûr de vouloir supprimer la voiture " + voinom + " ?",
+        icon: "error",
+        confirmButtonText: "Supprimer",
+        cancelButtonText: "Annuler",
+        showCancelButton: true,
+    }).then(function(result) {
+        if (result.value) {
+            window.location = "/supprimerVoiture/" + voinum;
+        }
+    });
+}

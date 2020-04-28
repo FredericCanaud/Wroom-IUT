@@ -1,0 +1,27 @@
+<div class="centre">
+    <h1> Gestion des Voitures </h1>
+    <img src="/image/cat_ecurie.png">
+    <div>
+        <img src="/image/act_add.png">
+        <a href="/ajouterVoiture">Ajouter une voiture</a>
+    </div>
+</div>
+<table border="1">
+    <tr>
+        <th> Nom </th>
+        <th> Image </th>
+        <th> Actions </th>
+    </tr>
+    {{#each voitures}}
+    <tr>
+        <td> {{this.voinom}} </td>
+        <td> <img src="/image/ecurie/voiture/{{this.voiadresseimage}}" width="96" height="96"></td>
+        <td>
+            <img src="/image/act_edit.png"> <a href="modifierVoiture/{{this.voinum}}">Modifier</a>
+            <img src="/image/act_delete.png"> <a id="btnSupprimer" onclick="supprimerVoiture('{{this.voinom}}','{{this.voinum}}')" href="#">Supprimer</a>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="/js/fonctions.js"></script>

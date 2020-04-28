@@ -1,0 +1,37 @@
+<div class="centre">
+  <h1> Ajouter une voiture </h1>
+  {{#if fail}}
+  <p>
+      <strong>{{this.fail}}</strong>
+  </p>
+  {{/if}}
+  <form action="" enctype="multipart/form-data" method="post">
+      <div>
+          <label for="voinom">Nom : </label>
+          <input type="text" name="voinom" required>
+      </div>
+      <div>
+          <label for="ecunum">Ecurie propriétaire : </label>
+          <select name="ecunum" required>
+              {{#each ecuries}}
+              <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+              {{/each}}
+          </select>
+      </div>
+      <div>
+          <label for="typnum">Type de voiture : </label>
+          <select name="typnum" required>
+              {{#each typesVoiture}}
+              <option value="{{this.typnum}}">{{this.typelibelle}}</option>
+              {{/each}}
+          </select>
+      </div>
+      <div>
+          <label for="voiadresseimage">Image : </label>
+          <input type="file" name="voiadresseimage" required>
+      </div>
+      <div class="centre">
+          <input type="submit" value="Ajouter">
+      </div>
+  </form>
+</div>

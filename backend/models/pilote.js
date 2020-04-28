@@ -109,7 +109,6 @@ module.exports.supprimerPilote = function(pilnum, callback) {
         }
     });
 };
-
 module.exports.updatePiloteSansEcurie = function(ecunum, callback) {
     // connection à la base
     db.getConnection(function(err, connexion) {

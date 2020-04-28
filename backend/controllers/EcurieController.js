@@ -23,44 +23,6 @@ module.exports.ListerEcurie = function(request, response) {
     });
 }
 
-module.exports.InfoEcurie = function(request, response) {
-    let data = request.params.num;
-    async.parallel([
-            function(callback) {
-                modeleEcurie.getDetailEcurie(data, (function(err, result) {
-                    callback(null, result)
-                }));
-            },
-            function(callback) {
-                modeleEcurie.getListeEcurie(function(err, result) {
-                    callback(null, result)
-                });
-            },
-            function(callback) {
-                modeleEcurie.getVoituresFromEcurie(data, function(err, result) {
-                    callback(null, result)
-                });
-            },
-            function(callback) {
-                modeleEcurie.getPilotesFromEcurie(data, function(err, result) {
-                    callback(null, result)
-                });
-            },
-        ],
-        function(err, result) {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            response.ecurie = result[0][0];
-            response.listeEcurie = result[1];
-            response.voitures = result[2];
-            response.pilotes = result[3];
-            console.log(result[0][0]);
-            response.title = "Détail sur l'écurie " + result[0][0].ecunom;
-            response.render('detailEcurie', response);
-        });
-}
 module.exports.AjouterEcurie = function(request, response) {
     response.title = 'Ajouter une Ecurie';
 
